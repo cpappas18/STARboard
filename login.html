@@ -22,18 +22,21 @@
                 syncRequest.send(`username=${username}&password=${encrypted_pass}`);
 
                 if (syncRequest.status === 200) {
-                    document.getElementById("body").innerHTML = syncRequest.responseText;
+                    document.body.innerHTML = syncRequest.responseText;
+                    scripts = document.body.getElementsByTagName("script");
+                    eval(scripts[0].text); // execute the declaration code for redirect() so that the browser knows it exists
+                    redirect(); // call the method returned by login.php
                 }
-                
             }
         </script>
     </head>
 
-    <body id="body">
+    <body>
         <form>
             Username: <input id="username" type="text" name="username"><br>
             Password: <input id="password" type="password" name="password"><br>
             <button type="button" onclick="sendLoginRequest()">Login</button>
         </form>
+
     </body>
 </html>
