@@ -7,17 +7,17 @@
 
         <script>
             function sendLoginRequest() {
-                username = document.getElementById("username").value;
-                password = document.getElementById("password").value;
+                let username = document.getElementById("username").value;
+                let password = document.getElementById("password").value;
 
-                syncRequest = new XMLHttpRequest();
+                const syncRequest = new XMLHttpRequest();
                 syncRequest.open("POST", "login.php", false);
                 syncRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
                 syncRequest.send(`username=${username}&password=${password}`);
 
                 if (syncRequest.status === 200) {
                     document.body.innerHTML = syncRequest.responseText;
-                    scripts = document.body.getElementsByTagName("script");
+                    let scripts = document.body.getElementsByTagName("script");
 
                     if (scripts.length > 0) {
                         eval(scripts[0].text); // execute the declaration code for redirect() so that the browser knows it exists

@@ -1,28 +1,51 @@
 <!DOCTYPE html>
     <head>
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
         <script>
 
+            function toggleStudentInfo() {
+                let student_info = document.getElementById('student-info');
+
+                if (student_info.style.display === "none") {
+                    student_info.style.display = "block";
+                } else {
+                    student_info.style.display = "none";
+                }
+            }
+
             function sendAccountCreationRequest() {
-                username = document.getElementById("username").value;
-                password = document.getElementById("password").value;
+                let username = document.getElementById("username").value;
+                let password = document.getElementById("password").value;
+                let first_name = document.getElementById("first-name").value;
+                let last_name = document.getElementById("last-name").value;
+                let email = document.getElementById("email").value;
+                let student_id = document.getElementById("student-id").value;
 
+                // get account types from form input
+                let checked = document.querySelectorAll('input[name=acct-type]:checked');
                 let account_types = [];
+                checked.forEach(type => account_types.push(type.id));
 
-                $("input:checkbox[name=type]:checked").each(function(){
-                    account_types.push($(this).val());
-                });
-
-                syncRequest = new XMLHttpRequest();
+                // get registered courses from form input
+                let courses = document.getElementById("courses");
+                let reg_courses = [];
+                let course;
+                for (let c=0; c<courses.children.length; c++) {
+                    course = courses.children[c].children[0]; // access nested input element
+                    if (course.value.length > 0) {
+                        reg_courses.push(course.value);
+                    }
+                }
+            
+                const syncRequest = new XMLHttpRequest();
                 syncRequest.open("POST", "register.php", false);
                 syncRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                syncRequest.send(`username=${username}&password=${password}&${JSON.stringify(account_types)}`);
+                syncRequest.send(`username=${username}&password=${password}&firstname=${first_name}
+                &lastname=${last_name}&email=${email}&accounttypes=${JSON.stringify(account_types)}
+                &studentid=${student_id}&courses=${JSON.stringify(reg_courses)}`);
 
                 if (syncRequest.status === 200) {
                     document.body.innerHTML = syncRequest.responseText;
-                    scripts = document.body.getElementsByTagName("script");
+                    let scripts = document.body.getElementsByTagName("script");
 
                     if (scripts.length > 0) {
                         eval(scripts[0].text); // execute the declaration code for redirect() so that the browser knows it exists
@@ -38,18 +61,38 @@
         <form>
             Username: <input id="username" type="text" name="username"><br>
             Password: <input id="password" type="password" name="password"><br>
+            First Name: <input id="first-name" type="text" name="first-name"><br>
+            Last Name: <input id="last-name" type="text" name="last-name"><br>
+            Email: <input id="email" type="email" name="email"><br>
+            
             Account type: 
 
-            <input type="checkbox" id="student" name="student">
+            <input type="checkbox" id="student" name="acct-type" onclick="toggleStudentInfo()">
             <label for="student">Student</label>
-            <input type="checkbox" id="professor" name="professor">
+            <input type="checkbox" id="professor" name="acct-type">
             <label for="professor">Professor</label>
-            <input type="checkbox" id="admin" name="admin">
+            <input type="checkbox" id="admin" name="acct-type">
             <label for="admin">TA Administrator</label>
-            <input type="checkbox" id="TA" name="TA">
+            <input type="checkbox" id="TA" name="acct-type">
             <label for="TA">Teaching Assistant</label>           
-            <input type="checkbox" id="sys-operator" name="sys-operator">
+            <input type="checkbox" id="sys-operator" name="acct-type">
             <label for="sys-operator">System Operator</label>     
+
+            <div id="student-info" style="display:none">
+                <!-- TODO: change this to a drop-down menu of courses where the 
+                            user can pick as many as they want -->
+                Student ID: <input id="student-id" type="number" minlength="9" maxlength="9" style="width:100px"><br>
+                Registered Courses:
+                <ol id="courses">
+                    <li><input id="course-1" type="text" name="course-1"></li>
+                    <li><input id="course-2" type="text" name="course-2"></li>
+                    <li><input id="course-3" type="text" name="course-3"></li>
+                    <li><input id="course-4" type="text" name="course-4"></li>
+                    <li><input id="course-5" type="text" name="course-5"></li>
+                    <li><input id="course-6" type="text" name="course-6"></li>
+                </ol>
+
+            </div>
 
             <button type="button" onclick="sendAccountCreationRequest()">Register</button>
         </form>
