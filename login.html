@@ -1,31 +1,28 @@
 <!DOCTYPE html>
+
 <html lang="en">
     <head>
         <title>Login</title>
         <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
 
         <script>
-            function encrypt(message, key) {
-                // TODO: implement method
-                encrypted_pass = message;
-                return encrypted_pass;
-            }
-
             function sendLoginRequest() {
                 username = document.getElementById("username").value;
                 password = document.getElementById("password").value;
-                encrypted_pass = encrypt(password, 1); // TODO: pick key value
 
                 syncRequest = new XMLHttpRequest();
                 syncRequest.open("POST", "login.php", false);
                 syncRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                syncRequest.send(`username=${username}&password=${encrypted_pass}`);
+                syncRequest.send(`username=${username}&password=${password}`);
 
                 if (syncRequest.status === 200) {
                     document.body.innerHTML = syncRequest.responseText;
                     scripts = document.body.getElementsByTagName("script");
-                    eval(scripts[0].text); // execute the declaration code for redirect() so that the browser knows it exists
-                    redirect(); // call the method returned by login.php
+
+                    if (scripts.length > 0) {
+                        eval(scripts[0].text); // execute the declaration code for redirect() so that the browser knows it exists
+                        redirect(); // call the method returned by login.php
+                    }
                 }
             }
         </script>
@@ -38,5 +35,8 @@
             <button type="button" onclick="sendLoginRequest()">Login</button>
         </form>
 
+        <a href="register.html">
+            <button>Register</button>
+         </a>
     </body>
 </html>

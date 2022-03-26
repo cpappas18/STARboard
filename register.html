@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+    <head>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+        <script>
+
+            function sendAccountCreationRequest() {
+                username = document.getElementById("username").value;
+                password = document.getElementById("password").value;
+
+                let account_types = [];
+
+                $("input:checkbox[name=type]:checked").each(function(){
+                    account_types.push($(this).val());
+                });
+
+                syncRequest = new XMLHttpRequest();
+                syncRequest.open("POST", "register.php", false);
+                syncRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                syncRequest.send(`username=${username}&password=${password}&${JSON.stringify(account_types)}`);
+
+                if (syncRequest.status === 200) {
+                    document.body.innerHTML = syncRequest.responseText;
+                    scripts = document.body.getElementsByTagName("script");
+
+                    if (scripts.length > 0) {
+                        eval(scripts[0].text); // execute the declaration code for redirect() so that the browser knows it exists
+                        redirect(); // call the method returned by login.php
+                    }
+                }
+            }
+        </script>
+    </head>
+
+    <body>
+        <h1>Create New Account</h1>
+        <form>
+            Username: <input id="username" type="text" name="username"><br>
+            Password: <input id="password" type="password" name="password"><br>
+            Account type: 
+
+            <input type="checkbox" id="student" name="student">
+            <label for="student">Student</label>
+            <input type="checkbox" id="professor" name="professor">
+            <label for="professor">Professor</label>
+            <input type="checkbox" id="admin" name="admin">
+            <label for="admin">TA Administrator</label>
+            <input type="checkbox" id="TA" name="TA">
+            <label for="TA">Teaching Assistant</label>           
+            <input type="checkbox" id="sys-operator" name="sys-operator">
+            <label for="sys-operator">System Operator</label>     
+
+            <button type="button" onclick="sendAccountCreationRequest()">Register</button>
+        </form>
+    </body>
+</html>
