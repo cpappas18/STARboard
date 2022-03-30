@@ -2,9 +2,39 @@
 <html>
     <head>
         <title>Dashboard</title>
+
+        <script>
+            function verifyUser() {
+                let ticket = document.cookie.split("=")[1];
+                
+                try {
+                    // get page content which depends on ticket permissions
+                    const request = new XMLHttpRequest();
+                    request.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            document.getElementById("top-nav").innerHTML = this.responseText;
+                        }
+                    }
+                    request.open("POST", "dashboard.php", true);
+                    request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                    request.send(`ticket=${ticket}`);
+                } catch (exception) {
+                    alert("User verification failed. Please reload the page to try again.");
+                }
+            }
+
+            verifyUser();
+        </script>
     </head>
 
     <body>
+        <header>
+            <nav id="top-nav">
+
+            </nav>
+        </header>
+
         <h1>Welcome to your dashboard!</h1>
+
     </body>
 </html>

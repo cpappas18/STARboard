@@ -18,20 +18,28 @@
                 let username = document.getElementById("username").value;
                 let password = document.getElementById("password").value;
 
-                const syncRequest = new XMLHttpRequest();
-                syncRequest.open("POST", "login.php", false);
-                syncRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                syncRequest.send(`username=${username}&password=${password}`);
+                try {
+                    const syncRequest = new XMLHttpRequest();
+                    syncRequest.open("POST", "login.php", false);
+                    syncRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                    syncRequest.send(`username=${username}&password=${password}`);
 
-                if (syncRequest.status === 200) {
-                    document.body.innerHTML = syncRequest.responseText;
-                    let scripts = document.body.getElementsByTagName("script");
+                    if (syncRequest.status === 200) {
+                        document.body.innerHTML = syncRequest.responseText;
+                        let scripts = document.body.getElementsByTagName("script");
 
-                    if (scripts.length > 0) {
-                        eval(scripts[0].text); // execute the declaration code for redirect() so that the browser knows it exists
-                        redirect(); // call the method returned by login.php
+                        if (scripts.length > 0) {
+                            eval(scripts[0].text); // execute the declaration code for our returned functions so that the browser knows they exist
+                            save_ticket_in_cookie(); // create a cookie on the user's browser with their ticket number
+                            redirect(); // redirect to the user's dashboard
+                        }
                     }
                 }
+                catch (exception) {
+                    alert("Request failed. Please try again.");
+                }
+
+
             }
         </script>
     </head>
