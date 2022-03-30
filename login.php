@@ -3,7 +3,7 @@
 $dbhost = "localhost";
 $dbuser = "root";
 $dbpass = "";
-$dbname = "users";
+$dbname = "STARboard";
 
 $con = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 
@@ -24,16 +24,25 @@ if (mysqli_num_rows($result) > 0) {
 
 } else {
     echo '<text>Username does not exist.</text>';
+    return;
 }
 
 if ($login_success) {
+
+    require_once("tickets.php");
+    $ticket = generate_new_ticket();
+    store_ticket_for_user($username, $ticket);
+
     echo 
-   '<script> 
+   "<script> 
+        function save_ticket_in_cookie() {
+            document.cookie = \"ticket=$ticket\";
+        }
+
         function redirect() { 
-            console.log("redirecting");
-            window.location.replace("dashboard.html"); 
+            window.location.replace('dashboard.html'); 
         } 
-    </script>';
+    </script>";
 } else {
     echo '<text>Password is incorrect. Try again.</text>';
 }
