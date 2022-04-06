@@ -1,6 +1,6 @@
 <?php
 
-$db = new SQLite3("STARboard.db", SQLITE3_OPEN_READWRITE);
+$db = new SQLite3("../STARboard.db", SQLITE3_OPEN_READWRITE);
 
 // define all fields to add to the database
 $username = $_POST['username'];
@@ -13,7 +13,7 @@ $last_name = $_POST['lastname'];
 $account_types = $_POST['accounttypes'];
 $reg_courses = $_POST['courses'];
 
-require_once("tickets.php");
+require_once("../dashboard/tickets.php");
 $ticket = generate_new_ticket();
 
 // store account in 'accounts' table

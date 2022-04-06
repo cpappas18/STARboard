@@ -10,7 +10,7 @@ if (!$verified) { // ticket does not exist in database or it is expired
     echo 
     "<script>
     function redirect() { 
-        window.location.replace('login.html'); 
+        window.location.replace('../login/login.html'); 
     } 
     </script>";
 

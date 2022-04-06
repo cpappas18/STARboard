@@ -2,7 +2,7 @@
 
 function generate_new_ticket() {
 
-    $db = new SQLite3("STARboard.db", SQLITE3_OPEN_READWRITE);
+    $db = new SQLite3("../STARboard.db", SQLITE3_OPEN_READWRITE);
 
     do {
         $ticket_num = rand(); // generate a random ticket number
@@ -17,7 +17,7 @@ function generate_new_ticket() {
 
 function store_ticket_for_user($username, $ticket) {
  
-    $db = new SQLite3("STARboard.db", SQLITE3_OPEN_READWRITE);
+    $db = new SQLite3("../STARboard.db", SQLITE3_OPEN_READWRITE);
 
     // retrieve the old ticket number
     $query = $db->prepare('SELECT * FROM "accounts" WHERE "username" = :username');
@@ -50,7 +50,7 @@ function store_ticket_for_user($username, $ticket) {
 }
 
 function verify_ticket($ticket) {
-    $db = new SQLite3("STARboard.db", SQLITE3_OPEN_READWRITE);
+    $db = new SQLite3("../STARboard.db", SQLITE3_OPEN_READWRITE);
  
     $query = $db->prepare('SELECT * FROM "tickets" WHERE "ticket" = :ticket');
     $query->bindValue(':ticket', $ticket);
@@ -77,7 +77,7 @@ function verify_ticket($ticket) {
 
 function get_ticket_permissions($ticket) {
 
-    $db = new SQLite3("STARboard.db", SQLITE3_OPEN_READWRITE);
+    $db = new SQLite3("../STARboard.db", SQLITE3_OPEN_READWRITE);
 
     $query = $db->prepare('SELECT * FROM "tickets" WHERE "ticket" = :ticket');
     $query->bindValue(':ticket', $ticket);

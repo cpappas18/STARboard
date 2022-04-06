@@ -1,6 +1,6 @@
 <?php
 
-$db = new SQLite3("STARboard.db", SQLITE3_OPEN_READWRITE);
+$db = new SQLite3("../STARboard.db", SQLITE3_OPEN_READWRITE);
 
 $username = $_POST['username'];
 $query = $db->prepare('SELECT * FROM "accounts" WHERE "username" = :username');
@@ -23,19 +23,18 @@ if ($user) {
 }
 
 if ($login_success) {
-
-    require_once("tickets.php");
+    require_once("../dashboard/tickets.php");
     $ticket = generate_new_ticket();
     store_ticket_for_user($username, $ticket);
 
     echo 
    "<script> 
         function save_ticket_in_cookie() {
-            document.cookie = \"ticket=$ticket\";
+            document.cookie = \"ticket=$ticket;path=/\";
         }
 
         function redirect() { 
-            window.location.replace('dashboard.html'); 
+            window.location.replace('../dashboard/dashboard.html'); 
         } 
     </script>";
 } else {
