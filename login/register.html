@@ -36,22 +36,21 @@
                     }
                 }
             
-                const syncRequest = new XMLHttpRequest();
-                syncRequest.open("POST", "register.php", false);
-                syncRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                syncRequest.send(`username=${username}&password=${password}&firstname=${first_name}
-                &lastname=${last_name}&email=${email}&accounttypes=${JSON.stringify(account_types)}
-                &studentid=${student_id}&courses=${JSON.stringify(reg_courses)}`);
+                try {
+                    const syncRequest = new XMLHttpRequest();
+                    syncRequest.open("POST", "register.php", false);
+                    syncRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                    syncRequest.send(`username=${username}&password=${password}&firstname=${first_name}
+                    &lastname=${last_name}&email=${email}&accounttypes=${JSON.stringify(account_types)}
+                    &studentid=${student_id}&courses=${JSON.stringify(reg_courses)}`);
 
-                if (syncRequest.status === 200) {
-                    document.body.innerHTML = syncRequest.responseText;
-                    let scripts = document.body.getElementsByTagName("script");
-
-                    if (scripts.length > 0) {
-                        eval(scripts[0].text); // execute the declaration code for redirect() so that the browser knows it exists
-                        redirect(); // call the method returned by login.php
+                    if (syncRequest.status === 200) {
+                        document.body.innerHTML = syncRequest.responseText;
                     }
+                } catch (exception) {
+                    alert("Request failed. Please try again.");
                 }
+
             }
         </script>
     </head>
@@ -94,6 +93,7 @@
 
             </div>
 
+            <br>
             <button type="button" onclick="sendAccountCreationRequest()">Register</button>
         </form>
     </body>

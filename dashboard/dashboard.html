@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Dashboard</title>
+
+        <script>
+            function handleStateChange(request) {          
+                let parser = new DOMParser();
+                let xmlDoc = parser.parseFromString(request.responseText, "text/xml");
+
+                let scripts = xmlDoc.getElementsByTagName("script");
+                if (scripts.length > 0) {
+                    document.body.innerHTML = request.responseText;
+                    scripts = document.body.getElementsByTagName("script");
+                    eval(scripts[0].text); // execute the declaration code for the returned function so that the browser knows it exists
+                    redirect(); // redirect to the user's dashboard
+                } 
+                else {
+                    document.getElementById("top-nav").innerHTML = request.responseText;
+                }
+            }
+
+            function parseCookies(cookies) {
+                return cookies.split(';')
+                    .map(cookie => cookie.trim().split('='))
+                    .reduce((acc, cur) => {
+                            acc[cur[0]] = cur[1];
+                            return acc;
+                        }, {});
+                }
+
+            function verifyUser() {
+                let cookies = parseCookies(document.cookie);
+                let ticket = cookies['ticket'];
+            
+                try {
+                    // get page content which depends on ticket permissions
+                    const request = new XMLHttpRequest();
+                    request.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            handleStateChange(this);
+                        }
+                    }
+                    request.open("POST", "dashboard.php", true);
+                    request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                    request.send(`ticket=${ticket}`);
+                } catch (exception) {
+                    alert("User verification failed. Please reload the page to try again.");
+                }
+            }
+
+            verifyUser();
+        </script>
+    </head>
+
+    <body>
+        <header>
+            <nav id="top-nav">
+
+            </nav>
+        </header>
+
+        <h1>Welcome to your dashboard!</h1>
+
+    </body>
+</html>

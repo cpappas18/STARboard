@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>STARboard login</title>
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Manrope&family=Montserrat+Subrayada:wght@700&family=Playfair+Display:ital,wght@1,600&family=Raleway&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Manrope&family=Montserrat+Subrayada:wght@700&family=Open+Sans&family=Playfair+Display:ital,wght@1,600&family=Raleway:wght@400;600&display=swap" rel="stylesheet">
+        <link href="login.css" rel="stylesheet">
+
+
+        <script>
+            function sendLoginRequest() {
+                let username = document.getElementById("username").value;
+                let password = document.getElementById("password").value;
+
+                try {
+                    const syncRequest = new XMLHttpRequest();
+                    syncRequest.open("POST", "login.php", false);
+                    syncRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                    syncRequest.send(`username=${username}&password=${password}`);
+
+                    if (syncRequest.status === 200) {
+                        document.body.innerHTML = syncRequest.responseText;
+                        let scripts = document.body.getElementsByTagName("script");
+
+                        if (scripts.length > 0) {
+                            eval(scripts[0].text); // execute the declaration code for our returned functions so that the browser knows they exist
+                            save_ticket_in_cookie(); // create a cookie on the user's browser with their ticket number
+                            redirect(); // redirect to the user's dashboard
+                        }
+                    }
+                }
+                catch (exception) {
+                    alert("Request failed. Please try again.");
+                }
+            }
+        </script>
+    </head>
+
+    <body>
+    <!--- Display main background image and website name: -->
+    <div class="backgroundImage">
+        <div class="backgroundImageText">
+            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/2/29/McGill_University_CoA.svg/1200px-McGill_University_CoA.svg.png"
+                 style="height:60px; width:50px;">
+            <span style="color: #8d99ae">STAR</span><span style="font-weight: 100">board</span>
+            <div class = "backgroundImageHeader">
+                McGill's SOCS TA Record Board
+            </div>
+        </div>
+    </div>
+
+    <div class="mainPage">
+        <hr><!--- Shaddow -->
+
+        <!--- Display login form: -->
+        <div class="loginSignUp">
+            <div class="headerFontBlue">Log-in</div>
+
+            <form>
+                <!--- Username --->
+                <input id="username" type="text" name="username" placeholder="username"><br>
+                <input id="password" type="password" name="password" placeholder="password"><br>
+
+                <!--- Password -- TODO: Style the buttons in the css style sheet--->
+                <button class = "style_button" type="button" onclick="sendLoginRequest()">Login</button>
+            </form>
+
+            <!---Register button: -->
+            <div class="headerFontBlue">
+                Don't have an account yet?
+            </div>
+
+            <button class = "style_button"><a href="register.html">Get on board</a></button>
+        </div>
+
+        <!--- STARboard for students: -->
+        <div class = "forStudents">
+            <div class = "headerFontBlue">
+                <h2>STARBoard for Students</h2>
+            </div>
+            <ul>
+                <li>Create an account</li>
+                <li>Rate teaching assistants by course</li>
+                <li>Provide anonymous, constructive feedback to TA's</li>
+            </ul>
+        </div>
+
+        <!--- STARboard for TAs: -->
+        <div class = "forTAs">
+            <div class = "headerFontRed">
+                <h2>STARBoard for TAs</h2>
+            </div>
+            <ul>
+                <li>View office hours and teaching responsibilities</li>
+                <li>Access course notes, reminders, links, announcement, and more</li>
+                <li>Chat with professors and other TAs</li>
+            </ul>
+
+        </div>
+
+
+        <!--- STARboard for profs: -->
+        <div class = "forProfs">
+            <div class = "headerFontBlue">
+                <h2>STARBoard for Professors</h2>
+            </div>
+            <ul>
+                <li>View TA performance logs </li>
+                <li>Create a TA wishlist for your courses</li>
+                <li>Access complete TA reports</li>
+                <li>Post TA responsibilities</li>
+            </ul>
+
+            <!---TODO: Create simple footer -->
+
+        </div>
+    </div>
+
+    </body>
+</html>
