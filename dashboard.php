@@ -6,19 +6,15 @@ $ticket = $_POST['ticket'];
 $verified = verify_ticket($ticket);
 
 if (!$verified) { // ticket does not exist in database or it is expired
-    echo redirect_to_login(); // send the user back to the login page (kick them out)
+    // send the user back to the login page (kick them out)
+    echo 
+    "<script>
+    function redirect() { 
+        window.location.replace('login.html'); 
+    } 
+    </script>";
+
     return;
-}
-
-$dbhost = "localhost";
-$dbuser = "root";
-$dbpass = "";
-$dbname = "STARboard";
-
-$con = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
-
-if ($con->connect_error) {
-    die("Failed to connect to the database.");
 }
 
 $permissions = get_ticket_permissions($ticket);
