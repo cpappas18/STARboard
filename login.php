@@ -1,23 +1,18 @@
 <?php
 
-$dbhost = "localhost";
-$dbuser = "root";
-$dbpass = "";
-$dbname = "STARboard";
-
-$con = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
-
-if ($con->connect_error) {
-    die("Failed to connect to the database.");
-}
+$db = new SQLite3("STARboard.db", SQLITE3_OPEN_READWRITE);
 
 $username = $_POST['username'];
-$query = "SELECT * FROM accounts WHERE username = '$username'";
-$result = $con->query($query);
+$query = $db->prepare('SELECT * FROM "accounts" WHERE "username" = :username');
+$query->bindValue(':username', $username);
+$result = $query->execute();
+$user = $result->fetchArray(SQLITE3_ASSOC);
 
-if (mysqli_num_rows($result) > 0) {
+$db->close();
+
+if ($user) {
     // retrieve password from database
-    $hashed_pass = $result->fetch_assoc()['password'];
+    $hashed_pass = $user['password'];
 
     // check against the user input password
     $login_success = password_verify($_POST['password'], $hashed_pass);

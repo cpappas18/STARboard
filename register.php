@@ -1,15 +1,6 @@
 <?php
 
-$dbhost = "localhost";
-$dbuser = "root";
-$dbpass = "";
-$dbname = "STARboard";
-
-$con = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
-
-if ($con->connect_error) {
-    die("Failed to connect to the database.");
-}
+$db = new SQLite3("STARboard.db", SQLITE3_OPEN_READWRITE);
 
 // define all fields to add to the database
 $username = $_POST['username'];
@@ -27,21 +18,33 @@ $ticket = generate_new_ticket();
 
 // store account in 'accounts' table
 if (strlen($student_id) > 0) {
-    $query = "INSERT INTO accounts VALUES ('$username', '$hashed_pass', '$first_name', '$last_name', '$email', '$student_id', '$ticket')";
+    $statement = 'INSERT INTO "accounts" VALUES (:username, :hashed_pass, :first_name, :last_name, :email, :id, :ticket)';
+    $query = $db->prepare($statement);
+    $query->bindValue(':id', $student_id);
 } else {
-    $query = "INSERT INTO accounts (username, password, first_name, last_name, email, ticket)
-    VALUES ('$username', '$hashed_pass', '$first_name', '$last_name', '$email', '$ticket')";
+    $statement = 'INSERT INTO "accounts" ("username", "password", "first_name", "last_name", "email", "ticket")
+    VALUES (:username, :hashed_pass, :first_name, :last_name, :email, :ticket)';
+    $query = $db->prepare($statement);
 }
-$result1 = $con->query($query);
+
+$query->bindValue(':username', $username);
+$query->bindValue(':hashed_pass', $hashed_pass);
+$query->bindValue(':first_name', $first_name);
+$query->bindValue(':last_name', $last_name);
+$query->bindValue(':email', $email);
+$query->bindValue(':ticket', $ticket);
+$query->execute();
 
 // store courses in 'registered_courses' table if the user is a student
-$result2 = true; 
 if (strlen($student_id) > 0) {
     $reg_courses = json_decode($reg_courses, true); // convert JSON to array of courses
+    $statement = 'INSERT INTO "registered_courses" VALUES (:student_id, :course)';
 
     foreach ($reg_courses as &$course) {
-        $query = "INSERT INTO registered_courses values ('$student_id', '$course')";
-        $result2 = $con->query($query);
+        $query = $db->prepare($statement);
+        $query->bindValue(':student_id', $student_id);
+        $query->bindValue(':course', $course);
+        $query->execute();
     }
 }
 
@@ -49,19 +52,19 @@ if (strlen($student_id) > 0) {
 $account_types = json_decode($account_types, true); // convert JSON to array of account types
 $ticket_expiry = new DateTime("+30 minutes"); // ticket expires in 30 minutes
 $ticket_expiry = $ticket_expiry->format('Y-m-d H:i:s'); // convert to SQL date format
+$statement = 'INSERT INTO "tickets" VALUES (:ticket, :ticket_expiry, :type)';
 
-$result3 = true;
 foreach ($account_types as &$type) {
-    $query = "INSERT INTO tickets values ('$ticket', '$ticket_expiry', '$type')";
-    $result3 = $con->query($query); 
+    $query = $db->prepare($statement);
+    $query->bindValue(':ticket', $ticket);
+    $query->bindValue(':ticket_expiry', $ticket_expiry);
+    $query->bindValue(':type', $type);
+    $query->execute();
 }
 
-if ($result1 && $result2 && $result3) {
-    echo 
-    "<p>Account created successfully.</p>
-    <p>Click <a href='login.html'>here</a> to login.</p>";
-} else {
-    echo "Account could not be created";
-    // TODO may have to delete some database entries if other ones could not be added
-}
+$db->close();
+
+echo 
+"<p>Account created successfully.</p>
+<p>Click <a href='login.html'>here</a> to login.</p>";
 ?>
