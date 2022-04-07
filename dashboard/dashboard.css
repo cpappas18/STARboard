@@ -1,0 +1,28 @@
+*{
+    font-family: 'Open Sans', sans-serif;
+    box-sizing: border-box;
+    color: white;
+}
+
+/* this is where the unique content for each page will go */
+.mainContent {
+    margin: 0px 10%;
+    padding: 120px 50px 50px;
+    color: black;
+    background-color: white;
+    box-shadow: 0 9px 0px 0px white,
+                0 -9px 0px 0px white,
+                12px 0 15px -4px rgba(0, 0, 0, 0.2),
+                -12px 0 15px -4px rgba(0, 0, 0, 0.2);
+
+}
+
+@media screen and (max-width: 950px) {
+    .mainContent{
+          width: 90%;
+          padding-left: 5%;
+          padding-right: 5%;
+          margin-left: 5%;
+          margin-right: 5%;
+    }
+}

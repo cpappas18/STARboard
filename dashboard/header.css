@@ -7,6 +7,7 @@
 body{
     background-color: #edf2f4;
 }
+
 /* Top Nav has the logo, title, and navigation buttons */
 .topNav {
     color: #edf2f4;
@@ -33,7 +34,6 @@ body{
 
 }
 
-
 .topNavLogo{
     float: left;
     height: 45px;
@@ -50,12 +50,9 @@ body{
     color: #8d99ae;
     padding-left: 10px;
     padding-right: 20px;
-
-
 }
 
-
-/* Cool undelrine effect when hovering: */
+/* Cool underline effect when hovering: */
 .topNavOption:after {
     content: '';
     position: absolute;
@@ -88,21 +85,6 @@ body{
     width: 20px;
     color: white;
 }
-
-/* this is where the unique content for each page will go */
-.mainContent {
-    margin: 0px 10%;
-    padding: 120px 50px 50px;
-    color: black;
-    background-color: white;
-    box-shadow: 0 9px 0px 0px white,
-                0 -9px 0px 0px white,
-                12px 0 15px -4px rgba(0, 0, 0, 0.2),
-                -12px 0 15px -4px rgba(0, 0, 0, 0.2);
-
-}
-
-
 
 .dropDown_contents {
     display:flex;
@@ -160,13 +142,6 @@ body{
           display: block;
           float: right;
     }
-    .mainContent{
-          width: 90%;
-          padding-left: 5%;
-          padding-right: 5%;
-          margin-left: 5%;
-          margin-right: 5%;
-    }
 
     @media screen and (max-width: 950px) {
           .topnav.topNavOption {position: relative;}
@@ -184,8 +159,5 @@ body{
           .dropDown_contents {
                 position: relative;
           }
-          
     }
-
-
 }
