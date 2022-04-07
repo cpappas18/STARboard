@@ -30,7 +30,7 @@ if ($login_success) {
     echo 
    "<script> 
         function save_ticket_in_cookie() {
-            document.cookie = \"ticket=$ticket;path=/\";
+            document.cookie = \"ticket=$ticket; path=/\";
         }
 
         function redirect() { 

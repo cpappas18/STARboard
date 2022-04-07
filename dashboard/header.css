@@ -1,17 +1,19 @@
 *{
     font-family: 'Open Sans', sans-serif;
     box-sizing: border-box;
-    color: #edf2f4;
+    color: white;
 }
 
 body{
     background-color: #edf2f4;
 }
+
 /* Top Nav has the logo, title, and navigation buttons */
 .topNav {
+    color: #edf2f4;
     background: rgb(25,26,38);
     background: linear-gradient(151deg, rgba(25,26,38,0.9906337535014006) 2%, rgba(39,42,75,0.8421743697478992) 50%, rgba(149,2,2,0.7665441176470589) 100%);
-    padding: 15px 20px;
+    padding: 13px 20px;
     width: 100%;
     position: fixed;
     top: 0;
@@ -21,31 +23,36 @@ body{
 }
 
 .topNavOption{
-    float: left;
+    display: block;
+    align-content: center;
     color: white;
     text-align: center;
     padding: 10px 20px;
-    font-size: 13px;
+    font-size: 15px;
     position: relative;
+    float: right;/* TODO: why isn't this working?*/
 
 }
 
+.topNavLogo{
+    float: left;
+    height: 45px;
+    width: 40px;
+    display: block;
+    padding-left: 30px;
+}
 
-.topNav .topNavLogo {
+.logoText{
     font-size: 27px;
     font-family: 'Raleway', sans-serif;
-    color: #8d99ae;
     float: left;
-    padding-left: 20px;
-    padding-right: 25px;
-}
-.logoImage{
-    height: 25px;
-    width: 20px;
+    display: block;
+    color: #8d99ae;
+    padding-left: 10px;
+    padding-right: 20px;
 }
 
-
-/* Cool undelrine effect when hovering: */
+/* Cool underline effect when hovering: */
 .topNavOption:after {
     content: '';
     position: absolute;
@@ -63,35 +70,26 @@ body{
     transform-origin: bottom right;
 }
 .topNavOption .selected{
-    border: 1px solid #8d99ae;
+    background: rgb(0,0,0);
+    background: linear-gradient(180deg, rgba(0,0,0,0.2637429971988795) 0%, rgba(1,2,5,0.7987570028011204) 100%);
 }
 
 .topNavOption i{
     padding-right: 6px;
+    color: white;
 }
 
 .hamburger{
     display: none;
+    height: 20px;
+    width: 20px;
+    color: white;
 }
-
-/* this is where the unique content for each page will go */
-.mainContent {
-    margin: 0px 10%;
-    padding: 120px 50px 50px;
-    color: black;
-    background-color: white;
-    box-shadow: 0 9px 0px 0px white,
-                0 -9px 0px 0px white,
-                12px 0 15px -4px rgba(0, 0, 0, 0.2),
-                -12px 0 15px -4px rgba(0, 0, 0, 0.2);
-
-}
-
-
 
 .dropDown_contents {
-    display: inline-block;
-    position: absolute;
+    display:flex;
+    position:fixed;
+    justify-content: center;
     background-color: #edf2f4;
     background: rgb(237,242,244);
     background: linear-gradient(180deg, rgba(237,242,244,1) 0%, rgba(206,211,226,1) 100%);
@@ -99,6 +97,7 @@ body{
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
     margin-top: 10px;
+    transform: translate(-20px, 0px);
 }
 
 .dropDownMenu .dropDownButton {
@@ -135,7 +134,30 @@ body{
 }
 
 
+@media screen and (max-width: 950px) {
+    .topNavOption{
+          display: none;
+    }
+    .hamburger{
+          display: block;
+          float: right;
+    }
 
+    @media screen and (max-width: 950px) {
+          .topnav.topNavOption {position: relative;}
+          
+          .topNavOption.responsive{
+            float: right;
+            width: 100%;
+            display: block;
+            text-align: center;
+          }
+          .dropDownMenu {
+                float: none;
+          }
 
-
-
+          .dropDown_contents {
+                position: relative;
+          }
+    }
+}

@@ -64,7 +64,8 @@ foreach ($account_types as &$type) {
 
 $db->close();
 
-echo 
-"<p>Account created successfully.</p>
-<p>Click <a href='login.html'>here</a> to login.</p>";
+echo "
+<p>Account created successfully. Please login to continue.</p>
+<button type=\"button\" onclick=\"toggleLogin()\">Back to Login</button> 
+";
 ?>

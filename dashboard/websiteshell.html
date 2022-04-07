@@ -1,5 +1,9 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-        "http://www.w3.org/TR/html4/loose.dtd">
+
+<!-- TO BE DELETED !!!!!!!!!!!!!!!!!!!! -->
+<!-- DO NOT WRITE MORE CODE IN THIS FILE -->
+<!-- this entire file has been copied into header.php and dashboard.html -->
+
+<!DOCTYPE HTML>
 <html>
 <head>
     <title>STARboard</title>
@@ -24,44 +28,33 @@
 <div class = "topNav">
 
     <!--- TOPNAV: Logo and website name --->
-    <div class = "topNavLogo">
-        <img class = "logoImage" src="https://www.2020yearofthenurse.org/uploads/2020/10/1200px-McGill_University_CoA.svg.png">
+
+    <img class = "topNavLogo" src="https://cdn.freebiesupply.com/logos/large/2x/mcgill-university-1-logo-png-transparent.png">
+    <div class="logoText">
         STAR<span style = "color: white">board</span>
     </div>
 
-    <!--- HOME BUTTON--->
-    <a class="topNavOption" onclick="menuItemSelected('home')" id="home">
-        <i class="fa fa-home" aria-hidden="true"></i>HOME
-    </a>
-
-    <!--- RATINGS BUTTON--->
-    <a class="topNavOption" onclick="menuItemSelected('ratings')" id="ratings">
-        <i class="fa fa-thumbs-up" aria-hidden="true"></i>RATINGS
-    </a>
-
-    <!--- COURSES BUTTON WITH DROP-DOWN--->
-    <div class = "topNavOption" onclick="menuItemSelected('courses')" id="courses">
+    <!--- SIGNOUT BUTTON WITH DROP-DOWN--->
+    <div class = "topNavOption" onclick="menuItemSelected('signout')" id="signout">
         <div class="dropDownMenu">
-
-            <!--- COURSES BUTTON--->
-            <a class="dropDownButton" onclick="toggleDropDown('courses_dropdown')">
-                <i class="fa fa-book" aria-hidden="true"></i>
-                COURSES
+            <!--- SIGN OUT BUTTON--->
+            <a class="dropDownButton" onclick="toggleDropDown('signout_dropDown')">
+                <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                SIGN-OUT
                 <i class="fa fa-angle-down" aria-hidden="true"></i>
             </a>
-
             <!--- DROP-DOWN--->
-            <div class="dropDown_contents" style="display: none;" id="courses_dropdown">
-                <!--- TODO: Personalize te course list for each user -->
-                <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> COMP 307</a>
-                <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> COMP 424</a>
-                <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> COMP 322</a>
+            <div class="dropDown_contents" style="display: none;"  id="signout_dropDown">
+                <a href="#">
+                    <i class="fa fa-sign-out" aria-hidden="true"></i>
+                    Confirm sign-out
+                </a>
             </div>
         </div>
     </div>
 
-    <!--- ADMIN BUTTON--- (FOR ADMIN AND SYSOP ONLY)-->
-    <div class="topNavOption" id="admin" onclick="menuItemSelected('admin')" >
+     <!--- ADMIN BUTTON--- (FOR ADMIN AND SYSOP ONLY)-->
+     <div class="topNavOption" id="admin" onclick="menuItemSelected('admin')" id="admin">
         <i class="fa fa-sliders" aria-hidden="true"></i><a class = "buttonLabel" id="adminButton"> ADMIN</a>
     </div>
 
@@ -83,21 +76,32 @@
         </div>
     </div>
 
-    <!--- SIGNOUT BUTTON WITH DROP-DOWN--->
-    <div class = "topNavOption" onclick="menuItemSelected('signout')" id="signout">
+   
+
+    
+    <!--- RATINGS BUTTON--->
+    <a class="topNavOption" onclick="menuItemSelected('ratings')" id="ratings">
+        <i class="fa fa-thumbs-up" aria-hidden="true"></i>RATINGS
+    </a>
+    
+
+    <!--- COURSES BUTTON WITH DROP-DOWN--->
+    <div class = "topNavOption" onclick="menuItemSelected('courses')" id="courses">
         <div class="dropDownMenu">
-            <!--- SIGN OUT BUTTON--->
-            <a class="dropDownButton" onclick="toggleDropDown('signout_dropDown')">
-                <i class="fa fa-user-circle-o" aria-hidden="true"></i>
-                SIGN-OUT
+
+            <!--- COURSES BUTTON--->
+            <a class="dropDownButton" onclick="toggleDropDown('courses_dropdown')">
+                <i class="fa fa-book" aria-hidden="true"></i>
+                COURSES
                 <i class="fa fa-angle-down" aria-hidden="true"></i>
             </a>
+
             <!--- DROP-DOWN--->
-            <div class="dropDown_contents" style="display: none;"  id="signout_dropDown">
-                <a href="#">
-                    <i class="fa fa-sign-out" aria-hidden="true"></i>
-                    Confirm sign-out
-                </a>
+            <div class="dropDown_contents" style="display: none;" id="courses_dropdown">
+                <!--- TODO: Personalize te course list for each user -->
+                <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> COMP 307</a>
+                <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> COMP 424</a>
+                <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> COMP 322</a>
             </div>
         </div>
     </div>
@@ -125,18 +129,7 @@
 
 
 <script>
-    /* When the user clicks on the button,
-    toggle between hiding and showing the dropdown content */
-
-    /*
-    function myFunction() {
-        console.log("my function clicked");
-        console.log(document.getElementById("myDropdown").className);
-        document.getElementById("myDropdown").classList.toggle(" show");
-        console.log(document.getElementById("myDropdown").className);
-
-    }
-    */
+ 
 
     /**
      * Makes the selected topNav option have a border and removes all other borders
@@ -183,6 +176,24 @@
         {
             d.style.display = "none";
         }
+    }
+
+    function showTopNavOptions() {
+        let options = document.getElementsByClassName("topNavOption");
+        for (let i=0; i<options.length; i++)
+        {
+            let option = options[i];
+            console.log(option.className);
+            if (option.className === "topNavOption") 
+            {
+                option.className += " responsive";
+            }   
+            else 
+            {
+                option.className = "topNavOption";
+            }
+        }
+        
     }
 
 </script>
