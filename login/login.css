@@ -105,7 +105,8 @@ hr {
 .mainPage{
     background-color: #edf2f4;
 }
-.loginSignUp{
+
+#login-form, #reg-form {
     width: auto;
     margin-left: 15%;
     margin-right: 15%;
@@ -119,3 +120,4 @@ hr {
     font-family: 'Open Sans', sans-serif;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
