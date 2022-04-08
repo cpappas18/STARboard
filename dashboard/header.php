@@ -5,7 +5,8 @@ require_once("tickets.php");
 $ticket = $_POST['ticket'];
 $verified = verify_ticket($ticket);
 
-if  (!$verified) { // ticket does not exist in database or it is expired
+
+if (!$verified) { // ticket does not exist in database or it is expired
     // send the user back to the login page (kick them out)
     echo 
     "<script>
