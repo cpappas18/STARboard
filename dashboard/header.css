@@ -74,7 +74,7 @@ body{
     background: linear-gradient(180deg, rgba(0,0,0,0.2637429971988795) 0%, rgba(1,2,5,0.7987570028011204) 100%);
 }
 
-.topNavOption i{
+.topNavOption a, i{
     padding-right: 6px;
     color: white;
 }
@@ -143,21 +143,20 @@ body{
           float: right;
     }
 
-    @media screen and (max-width: 950px) {
-          .topnav.topNavOption {position: relative;}
-          
-          .topNavOption.responsive{
-            float: right;
-            width: 100%;
-            display: block;
-            text-align: center;
-          }
-          .dropDownMenu {
-                float: none;
-          }
+    .topnav.topNavOption {position: relative;}
+    
+    .topNavOption.responsive{
+        float: right;
+        width: 100%;
+        display: block;
+        text-align: center;
+    }
 
-          .dropDown_contents {
-                position: relative;
-          }
+    .dropDownMenu {
+        float: none;
+    }
+
+    .dropDown_contents {
+        position: relative;
     }
 }

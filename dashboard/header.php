@@ -45,7 +45,7 @@ echo '
         </a>
         <!--- DROP-DOWN--->
         <div class="dropDown_contents" style="display: none;"  id="signout_dropDown">
-            <a href="#">
+            <a href="../login/login.html">
                 <i class="fa fa-sign-out" aria-hidden="true"></i>
                 Confirm sign-out
             </a>
@@ -55,9 +55,9 @@ echo '
 
 echo '
 <!--- RATINGS BUTTON--->
-<a class="topNavOption" onclick="menuItemSelected(\'ratings\')" id="ratings">
-    <i class="fa fa-thumbs-up" aria-hidden="true"></i>RATINGS
-</a>';
+<div class="topNavOption" onclick="menuItemSelected(\'ratings\')" id="ratings">
+    <i class="fa fa-thumbs-up" aria-hidden="true"></i><a class="buttonLabel" href="ratings.html">RATINGS</a>
+</div>';
 
 
 /**
@@ -66,7 +66,7 @@ echo '
 if (in_array("admin", $permissions) || in_array("sys_operator", $permissions)) {
     echo '
     <!--- ADMIN BUTTON--- (FOR ADMIN AND SYSOP ONLY)-->
-    <div class="topNavOption" id="admin" onclick="menuItemSelected(\'admin\')" id="admin">
+    <div class="topNavOption" onclick="menuItemSelected(\'admin\')" id="admin">
         <i class="fa fa-sliders" aria-hidden="true"></i><a class = "buttonLabel" id="adminButton"> ADMIN</a>
     </div>';
 }
@@ -82,7 +82,7 @@ if (in_array("professor", $permissions) || in_array("sys_operator", $permissions
         <div class="dropDownMenu">
 
             <!--- COURSES BUTTON--->
-            <a class="dropDownButton" onclick="toggleDropDown(\'courses_dropdown\')">
+            <a class="dropDownButton buttonLabel" onclick="toggleDropDown(\'courses_dropdown\')">
                 <i class="fa fa-book" aria-hidden="true"></i>
                 COURSES
                 <i class="fa fa-angle-down" aria-hidden="true"></i>
@@ -108,7 +108,7 @@ if (in_array("sys_operator", $permissions)) {
     <div class = "topNavOption" onclick="menuItemSelected(\'system\')" id="system">
         <div class="dropDownMenu">
             <!--- SYSTEM BUTTON--->
-            <a class="dropDownButton" onclick="toggleDropDown(\'system_dropdown\')">
+            <a class="dropDownButton buttonLabel" onclick="toggleDropDown(\'system_dropdown\')">
                 <i class="fa fa-cog" aria-hidden="true"></i>
                 SYSTEM
                 <i class="fa fa-angle-down" aria-hidden="true"></i>
