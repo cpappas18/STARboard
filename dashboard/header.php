@@ -130,5 +130,4 @@ echo
 <a  class="hamburger" onclick="showTopNavOptions()" >
     <i class="fa fa-bars" style = "color: white;"></i>
 </a>';
-
 ?>
