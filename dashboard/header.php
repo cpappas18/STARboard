@@ -5,7 +5,6 @@ require_once("tickets.php");
 $ticket = $_POST['ticket'];
 $verified = verify_ticket($ticket);
 
-
 if (!$verified) { // ticket does not exist in database or it is expired
     // send the user back to the login page (kick them out)
     echo 
@@ -46,7 +45,7 @@ echo '
         </a>
         <!--- DROP-DOWN--->
         <div class="dropDown_contents" style="display: none;"  id="signout_dropDown">
-            <a href="../login/login.html">
+            <a href="#">
                 <i class="fa fa-sign-out" aria-hidden="true"></i>
                 Confirm sign-out
             </a>
@@ -131,5 +130,4 @@ echo
 <a  class="hamburger" onclick="showTopNavOptions()" >
     <i class="fa fa-bars" style = "color: white;"></i>
 </a>';
-
 ?>
