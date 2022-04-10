@@ -19,45 +19,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
        
         <script src="header.js"></script>
-
-        <script>
-            function populateTerms() {
-                try {
-                    const request = new XMLHttpRequest();
-                    request.open("POST", "ratings.php");
-                    request.onreadystatechange = function() {
-                        if (this.readyState == 4 && this.status == 200) {
-                            let terms = document.getElementById("terms");
-                            let avail_terms = JSON.parse(request.responseText);
-
-                            // sort terms by date
-                            avail_terms.sort(function (term1, term2) {
-                                return term1.split(' ')[1] > term2.split(' ')[1];
-                            });
-                   
-                            // add a dropdown menu item for each term
-                            avail_terms.forEach(term => {
-                                let child = document.createElement('option');
-                                child.value = term;
-                                child.innerHTML = term;
-                                terms.appendChild(child);
-                            })
-                        }
-                    }
-                    request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                    request.send("action=getTerms");
-                } catch (exception) {
-                    alert("Request failed. Please try again.");
-                }
-            }
-
-            function getCourses() {
-
-            }
-
-            populateTerms();
-
-        </script>
+        <script src="ratings.js"></script>
     </head>
 
     <body>
@@ -68,13 +30,25 @@
         <main>
             <h1>Rate a Teaching Assistant</h1>
 
-            <div id="form">
-
-            </div>
-
             <form>
-                <label for="terms">Choose a term:</label>
-                <select name="terms" id="terms"></select>
+                <!-- terms populated at onload by ajax call and selection triggers a second ajax call -->
+                <label for="terms-select">Choose a term:</label>
+                <select name="terms-select" id="terms-select" onchange="getCourses()">
+                    <option value="none">-------</option>
+                </select><br><br>
+
+                <!-- courses in term populated by second ajax call and selection triggers a third ajax call -->
+                <label for="courses-select">Choose a course:</label>
+                <select name="courses-select" id="courses-select" onchange="getTAs()">
+                    <option value="none">-------</option>
+                </select><br><br>
+
+                <!-- TAs in course populated by third ajax call -->
+                <label for="TAs-select">Choose a TA:</label>
+                <select name="TAs-select" id="TAs-select">
+                    <option value="none">-------</option>
+                </select>                
+
             </form>
             
         </main>
