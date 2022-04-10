@@ -1,0 +1,18 @@
+*{
+    font-family: 'Open Sans', sans-serif;
+    box-sizing: border-box;
+    color: black;
+}
+
+/* this is where the unique content for each page will go */
+main {
+    margin: 0px 10%;
+    padding: 120px 50px 50px;
+
+    background-color: white;
+    box-shadow: 0 9px 0px 0px white,
+                0 -9px 0px 0px white,
+                12px 0 15px -4px rgba(0, 0, 0, 0.2),
+                -12px 0 15px -4px rgba(0, 0, 0, 0.2);
+
+}

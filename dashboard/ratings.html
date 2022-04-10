@@ -5,7 +5,8 @@
         
         <!--- Style sheet: ---->
         <link href="header.css" rel="stylesheet">
-    
+        <link href="ratings.css" rel="stylesheet">
+
         <!--- Icons: ---->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/font-awesome.min.css">
@@ -18,12 +19,65 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
        
         <script src="header.js"></script>
+
+        <script>
+            function populateTerms() {
+                try {
+                    const request = new XMLHttpRequest();
+                    request.open("POST", "ratings.php");
+                    request.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            let terms = document.getElementById("terms");
+                            let avail_terms = JSON.parse(request.responseText);
+
+                            // sort terms by date
+                            avail_terms.sort(function (term1, term2) {
+                                return term1.split(' ')[1] > term2.split(' ')[1];
+                            });
+                   
+                            // add a dropdown menu item for each term
+                            avail_terms.forEach(term => {
+                                let child = document.createElement('option');
+                                child.value = term;
+                                child.innerHTML = term;
+                                terms.appendChild(child);
+                            })
+                        }
+                    }
+                    request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                    request.send("action=getTerms");
+                } catch (exception) {
+                    alert("Request failed. Please try again.");
+                }
+            }
+
+            function getCourses() {
+
+            }
+
+            populateTerms();
+
+        </script>
     </head>
 
     <body>
         <header>
             <div id="topNav" class="topNav"></div>
         </header>
+
+        <main>
+            <h1>Rate a Teaching Assistant</h1>
+
+            <div id="form">
+
+            </div>
+
+            <form>
+                <label for="terms">Choose a term:</label>
+                <select name="terms" id="terms"></select>
+            </form>
+            
+        </main>
     
     </body>
 </html>
