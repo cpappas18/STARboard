@@ -29,9 +29,7 @@ $permissions = get_ticket_permissions($ticket);
 echo '
 <!--- TOPNAV: Logo and website name --->
 <img class = "topNavLogo" src="https://cdn.freebiesupply.com/logos/large/2x/mcgill-university-1-logo-png-transparent.png">
-<div class="logoText">
-    STAR<span style = "color: white">board</span>
-</div>';
+<a href="dashboard.html" class="logoText">STAR<span style = "color: white">board</span></a>';
 
 echo '
 <!--- SIGNOUT BUTTON WITH DROP-DOWN--->

@@ -31,13 +31,12 @@ body{
     font-size: 15px;
     position: relative;
     float: right;/* TODO: why isn't this working?*/
-
 }
 
 .topNavLogo{
     float: left;
     height: 45px;
-    width: 40px;
+    width: 80px;
     display: block;
     padding-left: 30px;
 }
@@ -131,6 +130,10 @@ body{
 .dropDownMenu {
     float: left;
     overflow: hidden;
+}
+
+a {
+    text-decoration: none;
 }
 
 
