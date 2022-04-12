@@ -29,7 +29,7 @@ $permissions = get_ticket_permissions($ticket);
 echo '
 <!--- TOPNAV: Logo and website name --->
 <img class = "topNavLogo" src="https://cdn.freebiesupply.com/logos/large/2x/mcgill-university-1-logo-png-transparent.png">
-<a href="dashboard.html" class="logoText">STAR<span style = "color: white">board</span></a>';
+<a href="../dashboard/dashboard.html" class="logoText">STAR<span style = "color: white">board</span></a>';
 
 echo '
 <!--- SIGNOUT BUTTON WITH DROP-DOWN--->
@@ -54,7 +54,7 @@ echo '
 echo '
 <!--- RATINGS BUTTON--->
 <div class="topNavOption" onclick="menuItemSelected(\'ratings\')" id="ratings">
-    <i class="fa fa-thumbs-up" aria-hidden="true"></i><a class="buttonLabel" href="ratings.html">RATINGS</a>
+    <i class="fa fa-thumbs-up" aria-hidden="true"></i><a class="buttonLabel" href="../ratings/ratings.html">RATINGS</a>
 </div>';
 
 
