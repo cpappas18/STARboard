@@ -1,0 +1,310 @@
+* {
+    box-sizing: border-box;
+    color: black;
+  }
+.contentSection{
+    color: #8d99ae;
+    padding: 120px 10% 10%;
+    
+}
+
+
+.courseInfo{
+    float: left;
+    display: block;
+    width: 100%;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
+    color: black;
+    background-color: white;
+}
+.messageChannel{
+    width: 0%;
+    height: 0%;
+    padding: 0px;
+    margin: 20px;
+    border-radius: 10px;
+    color: black;
+    background-color: white;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    transition: 0.5s;
+    margin-top: 100px;
+    
+}
+
+.responsiveMessageChannel{
+    float: left;
+    display: none;
+    width: 100%;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
+    color: black;
+    background-color: white;
+
+
+}
+.displayMessagesButton{
+  position: fixed;
+  top: 100;
+  left: 30;
+  padding: 10px;
+  background-color: rgba(43, 46, 66, 0.6);
+  border: none;
+  border-radius: 25px;
+  -webkit-box-shadow: 0px 0px 13px 5px rgba(0,0,0,0.09);
+  -moz-box-shadow: 0px 0px 13px 5px rgba(0,0,0,0.09);
+  box-shadow: 0px 0px 13px 5px rgba(0,0,0,0.09);
+  font-size: 40px;
+  color: #c8d7f0;
+  
+    
+
+}
+
+.displayMessagesButton:hover{
+  background-color: rgba(43, 46, 66, 0.9);
+}
+
+.messageChannel .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+  color: rgba(43, 46, 66, 0.6);
+  padding: 10px;
+}
+
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+}
+
+.openbtn:hover {
+  background-color: #444;
+}
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+  width: 100%;
+  overflow-x:inherit;
+}
+
+.messageHistory{
+  margin-top: 10px;
+  color: black;
+  height: 83%;
+  overflow-y: scroll;
+  scroll-snap-type: y proximity;
+ 
+}
+.title{
+  font-family: 'Raleway', sans-serif;
+  font-size: 20;
+  color: rgb(167, 37, 48);
+  padding: 10px;
+  font-weight: 600;
+}
+
+.courseTitle{
+  font-family: 'Raleway', sans-serif;
+  font-size: 25;
+  color: #8d99ae;
+  padding: 10px;
+  width: 100%;
+}
+
+.messageInput{
+  display: inline-block;
+  width: 85%;
+  padding: 8px;
+  border-radius: 10px;
+  border: solid 1px #8d99ae;
+
+}
+
+.sendButton{
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  padding: 5px;
+  margin-left: 5px;
+}
+
+.inputAndButton{
+  padding-top: 15px;
+  padding-bottom: 10px;
+}
+
+.chooseTA{
+  border-radius: 10px;
+  padding: 10px;
+  width: 100%;
+  margin-top: 20px;
+  
+}
+
+.TAoption{
+  width: 100%;
+  padding: 10px;
+
+}
+
+.TAselected{
+  font-family: 'Raleway', sans-serif;
+  font-size: 20;
+  color: #8d99ae;
+  padding: 10px;
+  font-weight: 600;
+
+}
+
+.editButton{
+  padding: 10px;
+  background-color: #c8d7f0;
+  border: none;
+  float: none;
+  width: 100%;
+  border-radius: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.smallEditButton{
+  padding: 10px;
+  background-color: #c8d7f0;
+  border: none;
+  float: none;
+  width: 49%;
+  border-radius: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.editButton:hover{
+  background-color: #8d99ae;
+}
+.smallEditButton:hover{
+  background-color: #8d99ae;
+}
+
+.editPerformButton{
+  padding: 10px;
+  background-color: #c8d7f0;
+  border: none;
+  float: none;
+  width: 100%;
+  border-radius: 15px;
+  
+}
+.editPerformButton:hover{
+  background-color: #8d99ae;
+}
+.performanceInput{
+  border-radius: 15px;
+  border: solid 1px #8d99ae;
+  padding: 10px;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.editInfo
+{
+  border-radius: 10px;
+  display: none;
+  margin-top: 10px;
+  padding: 20px 20px;
+  border: 1px solid #8d99ae;
+}
+
+.editInfoInput{
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+
+
+/* Little pop-up message that says "records updates successfully" */
+#successMessage {
+  visibility: hidden;
+  min-width: 250px; 
+  margin-left: -125px; 
+  position: fixed;
+  z-index: 1; 
+  left: 50%; 
+  bottom: 30px; 
+  background-color: rgba(10%, 21%, 21%, 0.67); 
+  color: #fff; 
+  text-align: center; 
+  border-radius: 15px; 
+  padding: 16px; 
+}
+
+
+#successMessage.show {
+  visibility: visible; 
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Animations to fade the successMessage  */
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+
+
+@media screen and (max-width: 950px) {
+  .contentSection{
+    padding: 90px 20px;
+  }
+  .messageInput{
+    width: 70%;
+
+  }
+  
+
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

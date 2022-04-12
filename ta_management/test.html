@@ -1,0 +1,21 @@
+<html>
+    <body>
+
+        <script>
+        window.onload = function()
+        {
+            let username = "m";
+            let course = "comp307";
+            let dateAndTime = "2pm";
+            let message="hello";
+            const req = new XMLHttpRequest();
+            req.open("POST", "messageSent.php", false);
+            req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            req.send(`username=${username}&course=${course}&dateAndTime=${dateAndTime}&message=${message}`);
+            console.log(req.responseText);
+        }
+        </script>
+        
+    </body>
+</html>
+
