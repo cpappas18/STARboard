@@ -1,0 +1,131 @@
+
+*{box-sizing: border-box;}
+body, html {
+    height: 100%;
+}
+/* The hero image */
+.backgroundImage {
+    background-image: linear-gradient(to right, rgba(43, 46, 66, 0.8), rgba(0, 0, 0, 0.6)),
+    url("https://images.squarespace-cdn.com/content/v1/584092f9b3db2b7f144955f5/1480628480340-FF6R3KXDG6GTH3KXX2AQ/IMG_0225.JPG?format=1500w");
+    /* Set a specific height */
+    height: 50%;
+    position: relative;
+    /* Position and center the image to scale nicely on all screens */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.backgroundImageText {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 900;
+    font-size: 60px;
+    text-align: center;
+    padding-top: 70px;
+    color: white;
+    position: center;
+    width: auto;
+
+}
+
+/* The hero image */
+.forStudents {
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(110, 0, 19, 0.6)),
+    url("https://reporter.mcgill.ca/wp-content/uploads/2018/06/IMG_1878.jpg");
+    /* Set a specific height */
+    position: relative;
+    /* Position and center the image to scale nicely on all screens */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    padding: 30px;
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+    padding: 40px 15% 40px 15%;
+
+
+}
+
+.forTAs{
+    background-color: #edf2f4;
+    font-family: 'Open Sans', sans-serif;
+    color: #2b2d42;
+    background-position: center;
+    padding: 40px 15% 40px 15%;
+}
+
+/* The hero image */
+.forProfs {
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(110, 0, 19, 0.5)),
+    url("https://www.mcgill.ca/tls/files/tls/macdonald_engineering_50_after.jpg");
+    /* Set a specific height */
+    position: relative;
+    /* Position and center the image to scale nicely on all screens */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+    padding: 40px 15% 40px 15%;
+
+}
+
+
+
+.backgroundImageHeader {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    font-size: 25px;
+    position: center;
+    color: white;
+    border-radius: 25px;
+    text-align: center;
+    padding: 40px;
+}
+
+
+hr {
+    border:none;
+    height: 0px;
+    width: 100%;
+    height: 50px;
+    margin-top: 0;
+    border-bottom: 0px solid #1f1209;
+    box-shadow: 0 30px 30px -10px #333;
+    margin: -50px auto 10px;
+}
+
+.headerFontBlue{
+    font-family: 'Raleway', sans-serif;
+    color: #8d99ae;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-weight: bolder;
+}
+.headerFontRed{
+    font-family: 'Raleway', sans-serif;
+    color: #d90429;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-weight: bolder;
+}
+.mainPage{
+    background-color: #edf2f4;
+}
+.loginSignUp{
+    width: auto;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    padding: 20px;
+    position: center;
+    background-color: white;
+    border: #333333;
+    border-radius: 25px;
+    font-family: 'Open Sans', sans-serif;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
