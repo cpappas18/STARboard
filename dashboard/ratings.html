@@ -10,54 +10,19 @@
         <!--- Icons: ---->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/font-awesome.min.css">
-    
+        <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
+        <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css'> 
+
         <!--- Fonts: ---->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Manrope&family=Montserrat+Subrayada:wght@700&family=Playfair+Display:ital,wght@1,600&family=Raleway&display=swap" rel="stylesheet">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-       
+  
         <script src="header.js"></script>
-
-        <script>
-            function populateTerms() {
-                try {
-                    const request = new XMLHttpRequest();
-                    request.open("POST", "ratings.php");
-                    request.onreadystatechange = function() {
-                        if (this.readyState == 4 && this.status == 200) {
-                            let terms = document.getElementById("terms");
-                            let avail_terms = JSON.parse(request.responseText);
-
-                            // sort terms by date
-                            avail_terms.sort(function (term1, term2) {
-                                return term1.split(' ')[1] > term2.split(' ')[1];
-                            });
-                   
-                            // add a dropdown menu item for each term
-                            avail_terms.forEach(term => {
-                                let child = document.createElement('option');
-                                child.value = term;
-                                child.innerHTML = term;
-                                terms.appendChild(child);
-                            })
-                        }
-                    }
-                    request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                    request.send("action=getTerms");
-                } catch (exception) {
-                    alert("Request failed. Please try again.");
-                }
-            }
-
-            function getCourses() {
-
-            }
-
-            populateTerms();
-
-        </script>
+        <script src="ratings.js"></script>
+    
     </head>
 
     <body>
@@ -65,19 +30,44 @@
             <div id="topNav" class="topNav"></div>
         </header>
 
-        <main>
+        <main id="main">
             <h1>Rate a Teaching Assistant</h1>
 
-            <div id="form">
-
-            </div>
-
             <form>
-                <label for="terms">Choose a term:</label>
-                <select name="terms" id="terms"></select>
-            </form>
-            
-        </main>
+                <!-- terms populated at onload by ajax call and selection triggers a second ajax call -->
+                <label for="terms-select">Choose a term:</label>
+                <select name="terms-select" id="terms-select" onchange="getCourses()">
+                    <option value="none">-------</option>
+                </select><br><br>
+
+                <!-- courses in term populated by second ajax call and selection triggers a third ajax call -->
+                <label for="courses-select">Choose a course:</label>
+                <select name="courses-select" id="courses-select" onchange="getTAs()">
+                    <option value="none">-------</option>
+                </select><br><br>
+
+                <!-- TAs in course populated by third ajax call -->
+                <label for="TAs-select">Choose a TA:</label>
+                <select name="TAs-select" id="TAs-select" onchange="toggleFeedbackDiv()">
+                    <option value="none">-------</option>
+                </select><br><br>          
+
+                <div id="feedback">
+                    <div id="stars">
+                        <span class="fa fa-star fa-2x" id="star-1" onmouseover="fillStar(1)"></span>
+                        <span class="fa fa-star fa-2x" id="star-2" onmouseover="fillStar(2)"></span>
+                        <span class="fa fa-star fa-2x" id="star-3" onmouseover="fillStar(3)"></span>
+                        <span class="fa fa-star fa-2x" id="star-4" onmouseover="fillStar(4)"></span>
+                        <span class="fa fa-star fa-2x" id="star-5" onmouseover="fillStar(5)"></span>
+                    </div><br>
     
+                    <textarea rows="5" cols="50" placeholder="How did they do?" id="feedback-msg"></textarea>
+
+                    <button type="button" onclick="submitFeedback()" style="margin-top:10px;">Submit</button>
+                </div>
+            </form>
+        
+        </main>
+  
     </body>
 </html>
