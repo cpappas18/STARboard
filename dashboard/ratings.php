@@ -64,17 +64,19 @@ function getTAs($term, $course) {
     $db->close();
 }
 
-// called function depends on the AJAX request parameter
-if (strcmp($_GET["action"], "getTerms")==0) {
-    getTerms();
-} else if (strcmp($_GET["action"], "getCourses")==0) {
-    $term = $_GET["term"];
-    getCoursesInTerm($term);
-} else if (strcmp($_GET["action"], "getTAs")==0) {
-    $term = $_GET["term"];
-    $course = $_GET["course"];
-    getTAs($term, $course);
-}
 
+// called function depends on the AJAX request parameter
+if (isset($_GET)) {
+    if (strcmp($_GET["action"], "getTerms")==0) {
+        getTerms();
+    } else if (strcmp($_GET["action"], "getCourses")==0) {
+        $term = $_GET["term"];
+        getCoursesInTerm($term);
+    } else if (strcmp($_GET["action"], "getTAs")==0) {
+        $term = $_GET["term"];
+        $course = $_GET["course"];
+        getTAs($term, $course);
+    }
+}
 
 ?>
