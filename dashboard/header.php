@@ -61,7 +61,7 @@ echo '
 /**
  * VISIBLE TO ADMIN AND SYSOP
  */
-if (in_array("admin", $permissions) || in_array("sys_operator", $permissions)) {
+if (in_array("admin", $permissions) || in_array("sys-operator", $permissions)) {
     echo '
     <!--- ADMIN BUTTON--- (FOR ADMIN AND SYSOP ONLY)-->
     <div class="topNavOption" onclick="menuItemSelected(\'admin\')" id="admin">
@@ -72,7 +72,7 @@ if (in_array("admin", $permissions) || in_array("sys_operator", $permissions)) {
 /**
  * VISIBLE TO ALL EXCEPT STUDENTS
  */
-if (in_array("professor", $permissions) || in_array("sys_operator", $permissions) 
+if (in_array("professor", $permissions) || in_array("sys-operator", $permissions) 
     || in_array("admin", $permissions) || in_array("TA", $permissions)) {
     echo '
     <!--- COURSES BUTTON WITH DROP-DOWN--->
@@ -100,7 +100,7 @@ if (in_array("professor", $permissions) || in_array("sys_operator", $permissions
 /**
  * VISIBLE TO SYSOP
  */
-if (in_array("sys_operator", $permissions)) {
+if (in_array("sys-operator", $permissions)) {
     echo 
     '<!--- SYSTEM BUTTON WITH DROP-DOWN--- (FOR SYSOP ONLY)-->
     <div class = "topNavOption" onclick="menuItemSelected(\'system\')" id="system">
@@ -113,7 +113,7 @@ if (in_array("sys_operator", $permissions)) {
             </a>
             <!--- DROP-DOWN--->
             <div class="dropDown_contents" style="display: none;"  id="system_dropdown">
-                <a href="#"><i class="fa fa-users" aria-hidden="true"></i> Manage users</a>
+                <a href="../sysop_tasks/manage_users.html"><i class="fa fa-users" aria-hidden="true"></i> Manage users</a>
                 <a href="#"><i class="fa fa-user-plus" aria-hidden="true"></i> Import professor</a>
                 <a href="#"><i class="fa fa-upload" aria-hidden="true"></i> Import course</a>
             </div>
