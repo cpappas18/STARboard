@@ -1,6 +1,100 @@
 <?php
 
-// FILL ALL THIS
+$db = new SQLite3("../STARboard.db", SQLITE3_OPEN_READWRITE);
+
+// get all fields from the POST request
+$old_username = $_POST['old_username'];
+$new_username = $_POST['new_username'];
+$email = $_POST['email'];
+$student_id = $_POST['studentid'];
+$first_name = $_POST['firstname'];
+$last_name = $_POST['lastname'];
+$account_types = $_POST['accounttypes'];
+$reg_courses = $_POST['courses'];
+
+// get ticket and original student ID before updating it so we can update the other tables
+$query = $db->prepare('SELECT * FROM "accounts" WHERE "username" = :username');
+$query->bindValue(':username', $old_username);
+$result = $query->execute();
+$user = $result->fetchArray(SQLITE3_ASSOC);
+
+if (!$user) {
+    die("Username could not be found in the database.");
+}
+
+$old_student_id = $user['student_ID'];
+$ticket = $user['ticket'];
+
+$account_types = json_decode($account_types, true); // convert JSON to array of account types
+
+// update 'accounts' table 
+$query = $db->prepare('UPDATE "accounts" SET "username"=:new_username, "email"=:email, "student_ID"=:student_ID, "first_name"=:first_name,
+            "last_name"=:last_name, "email"=:email WHERE "username"=:old_username');
+$query->bindValue(':new_username', $new_username);
+$query->bindValue(':email', $email);
+
+// only insert the student ID if the user is a student or TA
+if (in_array("student", $account_types) || in_array("TA", $account_types)) {
+    $query->bindValue(':student_ID', $student_id);
+} else {
+    $query->bindValue(':student_ID', "");
+}
+
+$query->bindValue(':first_name', $first_name);
+$query->bindValue(':last_name', $last_name);
+$query->bindValue(':email', $email);
+$query->bindValue(':old_username', $old_username);
+$query->execute();
+
+// delete all previously registered courses
+if (strlen($old_student_id) > 0) {
+    $query = $db->prepare('DELETE FROM "registered_courses" WHERE "student_ID" = :student_id');
+    $query->bindValue(':student_id', $old_student_id);
+    $query->execute();
+}
+
+// store new courses in 'registered_courses' table
+if (in_array("student", $account_types)) {
+    $reg_courses = json_decode($reg_courses, true); // convert JSON to array of courses
+    $statement = 'INSERT INTO "registered_courses" VALUES (:student_id, :course)';
+
+    foreach ($reg_courses as &$course) {
+        $query = $db->prepare($statement);
+        $query->bindValue(':student_id', $student_id);
+        $query->bindValue(':course', $course);
+        $query->execute();
+    }
+}
+
+// get ticket expiry before deleting its entries
+$query = $db->prepare('SELECT * FROM "tickets" WHERE "ticket" = :ticket');
+$query->bindValue(':ticket', $ticket);
+$result = $query->execute();
+$row = $result->fetchArray(SQLITE3_ASSOC);
+
+if (!$row) {
+    die("Ticket for this user does not exist.");
+}
+
+$ticket_expiry = $row['timeout'];
+
+// delete all previous permissions for this ticket
+$query = $db->prepare('DELETE FROM "tickets" WHERE "ticket" = :ticket');
+$query->bindValue(':ticket', $ticket);
+$query->execute();
+
+// store new account types in 'tickets' table
+$statement = 'INSERT INTO "tickets" VALUES (:ticket, :ticket_expiry, :type)';
+
+foreach ($account_types as &$type) {
+    $query = $db->prepare($statement);
+    $query->bindValue(':ticket', $ticket);
+    $query->bindValue(':ticket_expiry', $ticket_expiry);
+    $query->bindValue(':type', $type);
+    $query->execute();
+}
+
+$db->close();
 
 echo "
 <p>Your changes have been saved.</p>
