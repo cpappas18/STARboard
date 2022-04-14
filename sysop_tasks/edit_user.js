@@ -1,3 +1,4 @@
+
 function getAccount(username) {
     try {
         const req = new XMLHttpRequest();
@@ -14,17 +15,42 @@ function getAccount(username) {
     }    
 }
 
-function saveEdits(username) {
+function saveEdits() {
+    const old_username = document.URL.split("=")[1];
+    const new_username = document.getElementById("username").value;
+    const first_name = document.getElementById("first-name").value;
+    const last_name = document.getElementById("last-name").value;
+    const email = document.getElementById("email").value;
+    const student_id = document.getElementById("student-id").value;
+
+    // get account types from form
+    let checked = document.querySelectorAll('input[name=acct-type]:checked');
+    let account_types = [];
+    checked.forEach(type => account_types.push(type.id));
+
+    // get registered courses from form
+    let courses = document.getElementById("courses-list");
+    let reg_courses = [];
+    let course;
+    for (let c=0; c<courses.children.length; c++) {
+        course = courses.children[c].children[0]; // access nested input element
+        if (course.value.length > 0) {
+            reg_courses.push(course.value);
+        }
+    }
+
     try {
         const req = new XMLHttpRequest();
-        req.open("POST", `edit_user.php?username=${username}`, true);
+        req.open("POST", "edit_user.php", true);
         req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         req.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 document.getElementById("account-info").innerHTML = req.responseText;
             }
         }
-        req.send(null);
+        req.send(`old_username=${old_username}&new_username=${new_username}&firstname=${first_name}
+        &lastname=${last_name}&email=${email}&accounttypes=${JSON.stringify(account_types)}
+        &studentid=${student_id}&courses=${JSON.stringify(reg_courses)}`);
     } catch (exception) {
         alert("Request failed. Please try again.");
     }    
@@ -64,8 +90,6 @@ function populateAccountInfo(request) {
     courses.forEach(course => {
         course = course.trim(); // remove white space
         let course_field = document.getElementById(`course-${c}`);
-        console.log(course);
-        console.log(course_field);
         course_field.value = course;
         c++;
     })
