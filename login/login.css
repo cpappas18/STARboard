@@ -132,3 +132,7 @@ button {
 input {
     font-size: 16px !important; 
 }
+
+#error-msg-cont {
+    color: red;
+}
