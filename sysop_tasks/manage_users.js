@@ -51,5 +51,9 @@ function deleteAccount(username, student_id, ticket) {
 }
 
 function showAccount(username) {
-    window.location.replace(`./edit_user.html?username=${username}`); 
+    window.location.replace(`./add_edit_user.html?username=${username}`); 
+}
+
+function addAccount() {
+    window.location.replace("./add_edit_user.html"); 
 }
