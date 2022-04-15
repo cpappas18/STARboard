@@ -24,3 +24,11 @@ table, th, tr, td {
 .bi-arrow-return-left {
     color: black !important;
 }
+
+#error-msg-cont {
+    color: red !important;
+}
+
+.error {
+    color: red !important;  
+}
