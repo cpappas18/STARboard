@@ -111,7 +111,7 @@ hr {
     background-color: #edf2f4;
 }
 
-#login-form, #reg-form {
+#login-form, #reg-form, #reg-success-msg-cont {
     width: auto;
     margin-left: 15%;
     margin-right: 15%;
