@@ -126,7 +126,7 @@ function sendAccountCreationRequest() {
         const syncRequest = new XMLHttpRequest();
         syncRequest.open("POST", "register.php", false);
         syncRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        syncRequest.send(`username=${username}&password=${password}&firstname=${first_name}
+        syncRequest.send(`sender=user&username=${username}&password=${password}&firstname=${first_name}
         &lastname=${last_name}&email=${email}&accounttypes=${JSON.stringify(account_types)}
         &studentid=${student_id}&courses=${JSON.stringify(reg_courses)}`);
 

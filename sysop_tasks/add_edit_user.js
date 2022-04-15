@@ -100,6 +100,15 @@ function save() {
 }
 
 function saveEdits() {
+    clearErrorMessages();
+    let complete = confirmFieldsCompleted();
+
+    if (!complete) {
+        let error_div = document.getElementById("error-msg-cont");
+        error_div.innerHTML = "<p style='color:red'>All fields are required.</p>";
+        return;
+    }
+
     const old_username = document.URL.split("=")[1];
     const new_username = document.getElementById("username").value;
     const first_name = document.getElementById("first-name").value;
@@ -129,7 +138,22 @@ function saveEdits() {
         req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         req.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("account-info").innerHTML = req.responseText;
+                let parser = new DOMParser();
+                let xmlDoc = parser.parseFromString(req.responseText, "text/xml");
+                let error_msgs = xmlDoc.getElementsByClassName("error");
+                
+                // check if we received an error while trying to register
+                if (error_msgs.length > 0) {
+                    let error_div = document.getElementById("error-msg-cont");
+    
+                    // append all error messages
+                    for (msg of error_msgs) {
+                        error_div.appendChild(msg);
+                    }
+                } 
+                else { // registration success
+                    document.getElementById("account-info").innerHTML = req.responseText;
+                }
             }
         }
         req.send(`old_username=${old_username}&new_username=${new_username}&firstname=${first_name}
@@ -230,7 +254,7 @@ function saveNewAccount() {
         const syncRequest = new XMLHttpRequest();
         syncRequest.open("POST", "../login/register.php", false);
         syncRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        syncRequest.send(`username=${username}&password=${password}&firstname=${first_name}
+        syncRequest.send(`sender=sysop&username=${username}&password=${password}&firstname=${first_name}
         &lastname=${last_name}&email=${email}&accounttypes=${JSON.stringify(account_types)}
         &studentid=${student_id}&courses=${JSON.stringify(reg_courses)}`);
 
@@ -249,9 +273,7 @@ function saveNewAccount() {
                 }
             } 
             else { // registration success
-                document.getElementById("account-info").innerHTML = `
-                <p>Account created successfully.</p>
-                <button type=\"button\" onclick=\"window.location.replace('./manage_users.html');\">Back to Accounts <i class='bi bi-arrow-return-left'></i></button>`;
+                document.getElementById("account-info").innerHTML = syncRequest.responseText;
             }
         }
     } catch (exception) {
