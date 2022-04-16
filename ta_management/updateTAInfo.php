@@ -10,8 +10,10 @@
     $ohDay = $_POST['ohDay'];
     $ohStart = $_POST['ohStart'];
     $ohEnd = $_POST['ohEnd'];
-    $ohLocation = $_POST['ohLocation'];
-    $responsibilities = $_POST['responsibilities'];
+    //Sanitize user inputs
+    $ohLocation = filter_var($_POST['ohLocation'], FILTER_SANITIZE_SPECIAL_CHARS);
+    $responsibilities = filter_var($_POST['responsibilities'], FILTER_SANITIZE_SPECIAL_CHARS);
+  
 
     // store message in 'messages' table
     $statement = "UPDATE TAmanagement SET ohDay = :ohDay, 

@@ -6,6 +6,7 @@
         <!--- Style sheet: ---->
         <link href="../dashboard/header.css" rel="stylesheet">
         <link href="ratings.css" rel="stylesheet">
+        <link rel="icon" type="image/x-icon" href="../media/logo_navy.png">
 
         <!--- Icons: ---->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -31,7 +32,7 @@
         </header>
 
         <main id="main">
-            <h1>Rate a Teaching Assistant</h1><br>
+            <h1>Rate a Teaching Assistant</h1>
 
             <form>
                 <!-- terms populated at onload by ajax call and selection triggers a second ajax call -->
@@ -61,7 +62,7 @@
                         <span class="fa fa-star fa-2x" id="star-5" onmouseover="fillStar(5)"></span>
                     </div><br>
     
-                    <textarea rows="5" cols="50" placeholder="How did they do?" id="feedback-msg"></textarea><br>
+                    <textarea rows="5" cols="50" placeholder="How did they do?" id="feedback-msg"></textarea>
 
                     <button type="button" onclick="submitFeedback()" style="margin-top:10px;">Submit</button>
                 </div>

@@ -58,7 +58,7 @@
     while ($message = $result->fetchArray(SQLITE3_ASSOC))
     {
       //then display self message
-      if ($message['username'] == $username)
+      if ($message['username'] != $username)
       {
         echo "<div class='messageInfo'>" . $message['username'] . "  " . $message['dateAndTime'] . " : </div>";
         echo "<div class='messageBubble'> " . $message['message'] . "</div>";

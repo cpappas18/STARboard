@@ -1,3 +1,10 @@
+<style>
+    a:link { text-decoration: none; }
+    a:visited { text-decoration: none; }
+    a:hover { text-decoration: none; }
+    a:active { text-decoration: none; }
+</style>
+
 <?php
 
 require_once("tickets.php");
@@ -28,7 +35,7 @@ $permissions = get_ticket_permissions($ticket);
 
 echo '
 <!--- TOPNAV: Logo and website name --->
-<img class = "topNavLogo" src="https://cdn.freebiesupply.com/logos/large/2x/mcgill-university-1-logo-png-transparent.png">
+<img class = "topNavLogo" src="../media/logo_light.png">
 <a href="../dashboard/dashboard.html" class="logoText">STAR<span style = "color: white">board</span></a>';
 
 echo '
@@ -58,19 +65,9 @@ echo '
 </div>';
 
 
-/**
- * VISIBLE TO ADMIN AND SYSOP
- */
-if (in_array("admin", $permissions) || in_array("sys-operator", $permissions)) {
-    echo '
-    <!--- ADMIN BUTTON--- (FOR ADMIN AND SYSOP ONLY)-->
-    <div class="topNavOption" onclick="menuItemSelected(\'admin\')" id="admin">
-        <i class="fa fa-sliders" aria-hidden="true"></i><a class = "buttonLabel" id="adminButton"> ADMIN</a>
-    </div>';
-}
 
 /**
- * VISIBLE TO ALL EXCEPT STUDENTS
+ * TA MANAGEMENT: VISIBLE TO ALL EXCEPT STUDENTS
  */
 if (in_array("professor", $permissions) || in_array("sys-operator", $permissions) 
     || in_array("admin", $permissions) || in_array("TA", $permissions)) {
@@ -85,18 +82,26 @@ if (in_array("professor", $permissions) || in_array("sys-operator", $permissions
                 COURSES
                 <i class="fa fa-angle-down" aria-hidden="true"></i>
             </a>
-
+    
             <!--- DROP-DOWN--->
-            <div class="dropDown_contents" style="display: none;" id="courses_dropdown">
-                <!--- TODO: Personalize te course list for each user -->
-                <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> COMP 307</a>
-                <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> COMP 424</a>
-                <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> COMP 322</a>
+            <div class="dropDown_contents" style="display: none;" id="courses_dropdown">';
+            require "courseDropDown.php";
+            echo'
             </div>
         </div>
     </div>';
 }
 
+/**
+ * VISIBLE TO ADMIN AND SYSOP
+ */
+if (in_array("admin", $permissions) || in_array("sys-operator", $permissions)) {
+    echo '
+    <!--- ADMIN BUTTON--- (FOR ADMIN AND SYSOP ONLY)-->
+    <div class="topNavOption" onclick="menuItemSelected(\'admin\')" id="admin">
+        <i class="fa fa-sliders" aria-hidden="true"></i><a class = "buttonLabel" id="adminButton"> ADMIN</a>
+    </div>';
+}
 /**
  * VISIBLE TO SYSOP
  */
@@ -113,9 +118,9 @@ if (in_array("sys-operator", $permissions)) {
             </a>
             <!--- DROP-DOWN--->
             <div class="dropDown_contents" style="display: none;"  id="system_dropdown">
-                <a href="../sysop_tasks/manage_users.html"><i class="fa fa-users" aria-hidden="true"></i> Manage users</a>
-                <a href="#"><i class="fa fa-user-plus" aria-hidden="true"></i> Import professor</a>
-                <a href="#"><i class="fa fa-upload" aria-hidden="true"></i> Import course</a>
+                <a href="#"> <i class="fa fa-users" aria-hidden="true"></i> Manage users</a>
+                <a href="../sysop_tasks/importProf.html"><i class="fa fa-user-plus" aria-hidden="true"></i> Import profs/courses</a>
+               
             </div>
         </div>
     </div>';
