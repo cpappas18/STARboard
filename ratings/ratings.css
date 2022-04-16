@@ -5,15 +5,20 @@
 }
 
 main {
-    margin: 0px 10%;
     padding: 120px 50px 50px;
+    background-color: #edf2f4;
+}
 
+#white-frame {
     background-color: white;
-    box-shadow: 0 9px 0px 0px white,
-                0 -9px 0px 0px white,
-                12px 0 15px -4px rgba(0, 0, 0, 0.2),
-                -12px 0 15px -4px rgba(0, 0, 0, 0.2);
+    border: none;
+    border-radius: 15px;
+    padding: 50px;
+}
 
+#title {
+    font-family: 'Raleway', sans-serif;
+    font-size: 35px;
 }
 
 #feedback {
@@ -22,4 +27,43 @@ main {
 
 .bi-arrow-return-left {
     color: black !important;
+}
+
+.dropdown-label {
+    font-size: 20px;
+    font-family: 'Raleway', sans-serif;
+    color: rgb(167, 37, 48);
+    font-weight: 600 !important;
+    padding-right: 10px;
+}
+
+select {
+    font-size: 16px !important;
+    border: 1px solid gray;
+    border-radius: 15px;
+    padding: 10px;
+    width: 170px;
+}
+
+#stars {
+    margin: 15px;
+}
+
+textarea {
+    font-family: 'Raleway', sans-serif;
+    border: 1px solid gray;
+    border-radius: 15px;
+    font-size: 16px;
+}
+
+.style-button {
+    font-size: 20px !important; 
+    border: none;
+    border-radius: 15px;
+    background-color: #c8d7f0;
+    padding: 15px;
+}
+
+.style-button:hover{
+    background-color: #8d99ae;
 }

@@ -284,7 +284,7 @@ function saveNewAccount() {
 
 // on load
 let split_url = document.URL.split("=");
-let title = document.getElementById("page-title");
+let title = document.getElementById("title");
 
 if (split_url.length > 1) { // edit user account
     let username = split_url[1];

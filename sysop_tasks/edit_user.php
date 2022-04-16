@@ -146,7 +146,7 @@ $db->close();
 
 echo "
 <p>Your changes have been saved.</p>
-<button type=\"button\" onclick=\"window.location.replace('./manage_users.html');\">Back to Accounts <i class='bi bi-arrow-return-left'></i></button> 
+<button type=\"button\" onclick=\"window.location.replace('./manage_users.html');\" class=\"style-button\">Back to Accounts <i class='bi bi-arrow-return-left'></i></button> 
 ";
 
 ?>

@@ -1,6 +1,6 @@
 <?php
 
-function convertAccountType($type) {
+function convertAccountType1($type) {
     switch ($type) {
         case "student":
             return "Student";
@@ -15,6 +15,23 @@ function convertAccountType($type) {
     }
 }
 
+function convertAccountType2($type) {
+    $type = strtolower($type);
+
+    switch ($type) {
+        case "student": 
+            return "student";
+        case "professor": 
+            return "professor";
+        case "admin": case "administrator": case "ta admin": case "ta administrator":
+            return "admin";
+        case "ta": case "teaching assistant": 
+            return "TA";
+        case "system operator": case "sysop": case "sys op":
+            return "sys-operator";
+    } 
+}
+
 $db = new SQLite3("../STARboard.db", SQLITE3_OPEN_READWRITE);
 
 // get a single user
@@ -23,24 +40,85 @@ if (isset($_GET['username'])) {
     $query->bindValue(':username', $_GET['username']);
     $users = $query->execute();
 } 
+
 // get all users
 else {
     $db->exec('BEGIN');
-    $users = $db->query('SELECT * FROM "accounts"');
+
+    if (isset($_GET['filterOn']) && isset($_GET['filterBy'])) { // filter 
+        switch ($_GET['filterOn']) {
+            case 'username': 
+                $users = $db->query('SELECT * FROM "accounts" WHERE "username" = "'.$_GET['filterBy'].'"'); 
+                break; 
+            case 'first-name': 
+                $users = $db->query('SELECT * FROM "accounts" WHERE "first_name" = "'.$_GET['filterBy'].'"'); 
+                break; 
+            case 'last-name': 
+                $users = $db->query('SELECT * FROM "accounts" WHERE "last_name" = "'.$_GET['filterBy'].'"');  
+                break;
+            case 'email': 
+                $users = $db->query('SELECT * FROM "accounts" WHERE "email" = "'.$_GET['filterBy'].'"');  
+                break;
+            case 'student-id': 
+                $users = $db->query('SELECT * FROM "accounts" WHERE "student_ID" = "'.$_GET['filterBy'].'"'); 
+                break;
+            case 'account-type': 
+                // first get tickets with this account type
+                $filterBy = convertAccountType2($_GET['filterBy']);
+                $tickets = $db->query('SELECT * FROM "tickets" WHERE "account_type" = "'.$filterBy.'"');
+                $query_list = "";
+                $ticket = $tickets->fetchArray(SQLITE3_ASSOC);
+
+                // create a list of all ticket numbers 
+                if ($ticket) {
+                    $query_list = "".$ticket['ticket'];
+
+                    while ($ticket = $tickets->fetchArray(SQLITE3_ASSOC)) {
+                        $query_list = $query_list.",".$ticket['ticket'];
+                    }
+                }
+                
+                // now get all accounts with these tickets
+                $users = $db->query('SELECT * FROM "accounts" WHERE "ticket" IN ('.$query_list.')');
+                break;
+            case 'course':
+                // first get student IDs that are taking this course
+                $students = $db->query('SELECT * FROM "registered_courses" WHERE "course" = "'.$_GET['filterBy'].'"');
+                $query_list = "";
+                $student = $students->fetchArray(SQLITE3_ASSOC);
+
+                // create a list of all student IDs
+                if ($student) {
+                    $query_list = "".$student['student_ID'];
+
+                    while ($student = $students->fetchArray(SQLITE3_ASSOC)) {
+                        $query_list = $query_list.",".$student['student_ID'];
+                    }
+                }
+                
+                // now get all accounts with these student IDs
+                $users = $db->query('SELECT * FROM "accounts" WHERE "student_ID" IN ('.$query_list.')');
+                break;
+        }
+ 
+    } else { // no filtering
+        $users = $db->query('SELECT * FROM "accounts"');  
+    }
+
     $db->exec('COMMIT');
 }
 
 
 echo '<table>';
 echo'<tr>
-    <th>Username</th>
-    <th>First Name</th>
-    <th>Last Name</th>
-    <th>Email</th>
-    <th>Account Types</th>
-    <th>Student ID</th>
-    <th>Registered Courses</th>
-    <th style="width:120px;">Actions</th>
+    <th class="red-label">Username</th>
+    <th class="red-label">First Name</th>
+    <th class="red-label">Last Name</th>
+    <th class="red-label">Email</th>
+    <th class="red-label">Account Types</th>
+    <th class="red-label">Student ID</th>
+    <th class="red-label">Registered Courses</th>
+    <th style="width:120px;" class="red-label">Actions</th>
     </tr>';
 
 
@@ -52,10 +130,10 @@ while ($user = $users->fetchArray(SQLITE3_ASSOC)) {
     $result = $query->execute();
     $row = $result->fetchArray(SQLITE3_ASSOC);
     
-    $acct_types = "".convertAccountType($row['account_type']);
+    $acct_types = "".convertAccountType1($row['account_type']);
 
     while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
-        $acct_types = $acct_types.", ".convertAccountType($row['account_type']);
+        $acct_types = $acct_types.", ".convertAccountType1($row['account_type']);
     }
 
     // create comma-separated list of courses
