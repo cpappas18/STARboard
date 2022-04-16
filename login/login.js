@@ -19,13 +19,30 @@ function toggleExtraInfo() {
 function toggleLogin() {
     let login = document.getElementById("login-form");
     let reg = document.getElementById("reg-form");
+    let cont = document.getElementById("reg-success-msg-cont");
 
     if (login.style.display === "none") {
         login.style.display = "block";
         reg.style.display = "none";
+        cont.style.display = "none";
     } else {
+        clearRegistrationFields();
         login.style.display = "none";
         reg.style.display = "block";
+        cont.style.display = "none";
+    }
+}
+
+function toggleSuccessMsgCont() {
+    let reg = document.getElementById("reg-form");
+    let cont = document.getElementById("reg-success-msg-cont");
+
+    if (reg.style.display === "none") {
+        reg.style.display = "block";
+        cont.style.display = "none";
+    } else {
+        reg.style.display = "none";
+        cont.style.display = "block";
     }
 }
 
@@ -66,6 +83,31 @@ function clearErrorMessages() {
     while (error_div.firstChild) {
         error_div.removeChild(error_div.lastChild);
     }
+}
+
+function clearRegistrationFields() {
+    document.getElementById("username-reg").value = "";
+    document.getElementById("password-reg").value = "";
+    document.getElementById("first-name").value = "";
+    document.getElementById("last-name").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("student-id").value = "";
+
+    let checked = document.querySelectorAll('input[name=acct-type]:checked');
+    checked.forEach(type => type.checked = false);
+
+    let courses = document.getElementById("courses");
+    let course;
+
+    for (let c=0; c<courses.children.length; c++) {
+        course = courses.children[c].children[0]; // access nested input element
+        if (course.value.length > 0) {
+            course.value = "";
+        }
+    }
+
+    toggleExtraInfo(); // hide extra info sections
+    clearErrorMessages();
 }
 
 
@@ -145,7 +187,8 @@ function sendAccountCreationRequest() {
                 }
             } 
             else { // registration success
-                document.getElementById("reg-form").innerHTML = syncRequest.responseText;
+                document.getElementById("reg-success-msg-cont").innerHTML = syncRequest.responseText;
+                toggleSuccessMsgCont();
             }
         }
     } catch (exception) {

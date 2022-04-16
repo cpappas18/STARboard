@@ -41,7 +41,7 @@ body{
     padding-left: 30px;
 }
 
-.logoText{
+.logoText, .logoText:hover {
     font-size: 27px;
     font-family: 'Raleway', sans-serif;
     float: left;
@@ -49,6 +49,7 @@ body{
     color: #8d99ae;
     padding-left: 10px;
     padding-right: 20px;
+    text-decoration: none;
 }
 
 /* Cool underline effect when hovering: */
@@ -132,7 +133,7 @@ body{
     overflow: hidden;
 }
 
-a {
+a, a:hover {
     text-decoration: none;
 }
 

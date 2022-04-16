@@ -31,11 +31,12 @@
         </header>
 
         <main>
-            <h1>Manage User Accounts</h1><br>
-            <button onclick="addAccount()">Add New User</button><br><br>
+            <h1 id="title">Manage User Accounts</h1><br>
+            <button onclick="addAccount()" class="style-button">Add New User</button>
 
-            <label for="filter">Filter by:</label>
-            <select name="terms-select" id="terms-select" onchange="getCourses()">
+            <!-- User can filter the accounts by keyword -->
+            <label for="filter-cat" id="filter-label" class="red-label">Filter by:</label>
+            <select name="filter-cat" id="filter-cat">
                 <option value="none">-------</option>
                 <option value="username">Username</option>
                 <option value="first-name">First name</option>
@@ -45,8 +46,9 @@
                 <option value="student-id">Student ID</option>
                 <option value="course">Course</option>
             </select>
-            <input id="filter-critera" type="text" name="filter-critera">
-            <button>Filter</button>
+            <input id="filter-criteria" type="text" name="filter-critera">
+            <button onclick="filter()" class="style-button" style="display:inline-block">Filter</button>
+            <div id="filter-labels"></div>
 
             <br><br>
             <div id="accounts-table"></div>

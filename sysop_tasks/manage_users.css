@@ -5,15 +5,18 @@
 }
 
 main {
-    margin: 0px 10%;
-    padding: 120px 50px 50px;
-
+    padding: 120px 80px 80px;
     background-color: white;
-    box-shadow: 0 9px 0px 0px white,
-                0 -9px 0px 0px white,
-                12px 0 15px -4px rgba(0, 0, 0, 0.2),
-                -12px 0 15px -4px rgba(0, 0, 0, 0.2);
+    font-size: 16px;
+}
 
+#title {
+    font-family: 'Raleway', sans-serif;
+    font-size: 35px;
+}
+
+table {
+    width: 100%;
 }
 
 table, th, tr, td {
@@ -27,8 +30,65 @@ table, th, tr, td {
 
 #error-msg-cont {
     color: red !important;
+    font-size: 16px;
 }
 
 .error {
     color: red !important;  
+}
+
+.style-button {
+    font-size: 16px !important; 
+    border: none;
+    border-radius: 15px;
+    background-color: #c8d7f0;
+    padding: 15px;
+}
+
+.style-button:hover {
+    background-color: #8d99ae;
+}
+
+#filter-label {
+    margin-left: 25px;
+    margin-right: 10px;
+}
+
+#filter-cat, #filter-criteria {
+    height: 50px;
+    border: 1px solid gray;
+    border-radius: 15px;
+}
+
+input {
+    font-size: 16px !important;
+    border: 1px solid gray;
+    border-radius: 15px;
+    padding: 10px;
+    color: black;
+}
+
+#filter-labels {
+    width: 20%;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.red-label {
+    font-size: 20px;
+    font-family: 'Raleway', sans-serif;
+    color: rgb(167, 37, 48);
+    font-weight: 600 !important;
+    padding-right: 10px;
+}
+
+form, #student-id-div, #courses-div, #password-div {
+    font-family: 'Raleway', sans-serif;
+    color: rgb(167, 37, 48);
+    font-size: 18px;
+} 
+
+label {
+    font-weight: normal;
+    font-family: 'Raleway', sans-serif;
 }

@@ -191,7 +191,7 @@ function submitFeedback() {
         const request = new XMLHttpRequest();
         request.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("main").innerHTML = request.responseText;
+                document.getElementById("white-frame").innerHTML = request.responseText;
             }
         }
         request.open("POST", "feedback.php", false);

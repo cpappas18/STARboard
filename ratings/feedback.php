@@ -32,10 +32,10 @@ if (isset($_POST)) {
 
         submitFeedback($term, $course, $TA, $rating, $comment);
 
-        echo "
+        echo "<div style=\"text-align:center; font-size:20px;\">
         <p>Your rating has been submitted successfully!</p><br>
-        <button onclick=\"location.reload()\">Rate another TA <i class='bi bi-arrow-return-left'></i></button>
-        ";
+        <button onclick=\"location.reload()\" class=\"style-button\">Rate another TA <i class='bi bi-arrow-return-left'></i></button>
+        </div>";
 
     }
 } else {

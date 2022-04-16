@@ -153,10 +153,10 @@ $db->close();
 if (strcmp($_POST['sender'], "user")==0) {
     echo "
     <p>Account created successfully. Please login to continue.</p>
-    <button type=\"button\" onclick=\"toggleLogin()\">Back to Login</button>";
+    <button type=\"button\" onclick=\"toggleLogin()\" class=\"style-button\">Back to Login</button>";
 } else if (strcmp($_POST['sender'], "sysop")==0) {
     echo "
     <p>Account created successfully.</p>
-    <button type=\"button\" onclick=\"window.location.replace('./manage_users.html');\">Back to Accounts <i class='bi bi-arrow-return-left'></i></button>";
+    <button type=\"button\" onclick=\"window.location.replace('./manage_users.html');\" class=\"style-button\">Back to Accounts <i class='bi bi-arrow-return-left'></i></button>";
 }
 ?>

@@ -3,10 +3,10 @@
     font-family: 'Raleway', sans-serif;
 }
 
-
 body, html {
     height: 100%;
 }
+
 /* The main background image */
 .backgroundImage {
     background-image: linear-gradient(to right, rgba(43, 46, 66, 0.8), rgba(0, 0, 0, 0.6)),
@@ -20,7 +20,6 @@ body, html {
 }
 
 .backgroundImageText {
-    font-family: 'Raleway', sans-serif;
     font-weight: 900;
     font-size: 60px;
     text-align: center;
@@ -67,13 +66,9 @@ body, html {
     color: white;
     font-family: 'Open Sans', sans-serif;
     padding: 40px 15% 40px 15%;
-
 }
 
-
-
 .backgroundImageHeader {
-    font-family: 'Raleway', sans-serif;
     font-weight: 300;
     font-size: 25px;
     position: center;
@@ -82,7 +77,6 @@ body, html {
     text-align: center;
     padding: 40px;
 }
-
 
 hr {
     border:none;
@@ -94,14 +88,12 @@ hr {
 }
 
 .headerFontBlue{
-    font-family: 'Raleway', sans-serif;
     color: #8d99ae;
     padding-top: 10px;
     padding-bottom: 10px;
     font-weight: bolder;
 }
 .headerFontRed{
-    font-family: 'Raleway', sans-serif;
     color: #d90429;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -111,7 +103,7 @@ hr {
     background-color: #edf2f4;
 }
 
-#login-form, #reg-form {
+#login-form, #reg-form, #reg-success-msg-cont {
     width: auto;
     margin-left: 15%;
     margin-right: 15%;
@@ -125,12 +117,23 @@ hr {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-button {
+.style-button {
     font-size: 16px !important; 
+    border: none;
+    border-radius: 15px;
+    background-color: #c8d7f0;
+    padding: 10px;
+}
+
+.style-button:hover{
+    background-color: #8d99ae;
 }
 
 input {
-    font-size: 16px !important; 
+    font-size: 16px !important;
+    border: 1px solid gray;
+    border-radius: 15px;
+    padding: 10px;
 }
 
 #error-msg-cont {

@@ -41,7 +41,7 @@
 
                 <div id="login-error"></div>
                 
-                <button class = "style_button" type="button" onclick="sendLoginRequest()">Login</button>
+                <button class = "style-button" type="button" onclick="sendLoginRequest()">Login</button>
             </form>
 
             <!---Register button: -->
@@ -49,7 +49,7 @@
                 Don't have an account yet?
             </div>
 
-            <button class = "style_button" onclick="toggleLogin()">Get on Board</button>
+            <button class = "style-button" onclick="toggleLogin()">Get on Board</button>
         </div>
 
         <div id="reg-form" style="display:none;">
@@ -91,13 +91,14 @@
                     </ol>
                 </div>
                 
-                <br>
                 <div id="error-msg-cont"></div>
     
-                <button type="button" onclick="toggleLogin()" style="margin-top:10px;">Back to Login</button> 
-                <button type="button" onclick="sendAccountCreationRequest()" style="margin-top:10px;">Register</button>
+                <button type="button" onclick="toggleLogin()" style="margin-top:10px;" class="style-button">Back to Login</button> 
+                <button type="button" onclick="sendAccountCreationRequest()" style="margin-top:10px;" class="style-button">Register</button>
             </form>
         </div>
+
+        <div id="reg-success-msg-cont" style="display:none;"></div>
 
         <!--- STARboard for students: -->
         <div class = "forStudents">
