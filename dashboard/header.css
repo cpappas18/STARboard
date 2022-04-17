@@ -59,8 +59,6 @@ img {
     image-rendering: -webkit-optimize-contrast;
 }
 .logoText{
-
-.logoText, .logoText:hover {
     font-size: 27px;
     font-family: 'Raleway', sans-serif;
     float: left;
@@ -155,10 +153,6 @@ img {
 .dropDownMenu {
     float: left;
     overflow: hidden;
-}
-
-a, a:hover {
-    text-decoration: none;
 }
 
 
