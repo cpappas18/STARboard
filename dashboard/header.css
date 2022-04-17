@@ -51,6 +51,7 @@ a:active { text-decoration: none; }
     width: 40px;
     display: block;
 }
+<<<<<<< HEAD
 img {
     /* Ensures the logo isn't too blurry or too pixelated */
     image-rendering: auto;
@@ -59,6 +60,10 @@ img {
     image-rendering: -webkit-optimize-contrast;
 }
 .logoText{
+=======
+
+.logoText, .logoText:hover {
+>>>>>>> 24005a6a8c83fe1c7816c37caf026e69b199da5f
     font-size: 27px;
     font-family: 'Raleway', sans-serif;
     float: left;
@@ -67,9 +72,12 @@ img {
     padding-left: 10px;
     padding-right: 20px;
     text-decoration: none;
+<<<<<<< HEAD
 }
 .logoText:hover{
     color: #A72530;
+=======
+>>>>>>> 24005a6a8c83fe1c7816c37caf026e69b199da5f
 }
 
 /* Cool underline effect when hovering: */
@@ -155,6 +163,13 @@ img {
     overflow: hidden;
 }
 
+<<<<<<< HEAD
+=======
+a, a:hover {
+    text-decoration: none;
+}
+
+>>>>>>> 24005a6a8c83fe1c7816c37caf026e69b199da5f
 
 @media screen and (max-width: 950px) {
     .topNavOption{

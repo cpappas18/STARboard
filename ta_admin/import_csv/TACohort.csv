@@ -1,0 +1,9 @@
+﻿term_month_year,TA_name,student_ID,legal_name,email,grad_ugrad,supervisor_name,priority(yes/no),hours(90/180),date_applied,location,phone,degree,courses_applied_for,open_to_other_courses(yes/no),notes
+Winter 2022,Bob,157322936,Robert Bunny,Robert.bunny@mcgill,grad,gwynn,yes,90,10/24/21,Montreal,6873651223,Computer Science,"COMP 202, COMP 303",yes,
+Winter 2022,Julia,639322665,Julia Bottle,Julia.Bottle@mail,ugrad,ruth,yes,90,10/25/21,Montreal,8950932367,Art History,ARTH 333,yes,
+Winter 2022,Maddie,857622594,Maddie Mirror,Maddie.Mirror@mail,ugrad,bernard,yes,90,10/26/21,Montreal,9039351234,Environment,ENVR 421,yes,
+Winter 2022,Ella,749322733,Ella Scarf,Ella.Scarf@mail,ugrad,poppy,no,90,10/27/21,Montreal,7382651874,Computer Science,COMP 308,yes,
+Winter 2022,Chloe,883822838,Chloe Vincent,Chloe.Vincent@mail,ugrad,grant,no,180,10/28/21,Montreal,9589038656,Math,MATH 122,no,really wants to teach
+Winter 2022,Joseph,473227888,Joseph Drawer,Joseph.Drawer@mail,grad,ron,no,180,10/29/21,Montreal,8373785984,Geography,GEOG 315,no,
+Winter 2022,Harry,647333829,Harry Notebook,Harry.Notebook@mail,grad,lisa,no,180,10/30/21,Montreal,1833248950,Religion,RELG 355,no,
+Winter 2022,Ann,839298344,Ann Mickey,Ann.Micky@mail,grad,sunny,no,180,10/31/21,Montreal,8348395594,Philosophy,PHIL 101,no,

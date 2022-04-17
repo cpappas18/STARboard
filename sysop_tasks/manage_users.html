@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Manage Users</title>
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <!--- Icons: ---->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/font-awesome.min.css">
+        <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
+
+        <!--- Fonts: ---->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Manrope&family=Montserrat+Subrayada:wght@700&family=Playfair+Display:ital,wght@1,600&family=Raleway&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+        <link href="../dashboard/header.css" rel="stylesheet">
+        <link href="manage_users.css" rel="stylesheet">
+
+        <script src="../dashboard/header.js"></script>
+        <script src="manage_users.js"></script>
+
+        <script>document.onload = getAccounts();</script>
+    </head>
+
+    <body>
+        <header>
+            <div id="topNav" class="topNav"></div>
+        </header>
+
+        <main>
+            <h1 id="title">Manage User Accounts</h1><br>
+            <button onclick="addAccount()" class="style-button">Add New User</button>
+
+            <!-- User can filter the accounts by keyword -->
+            <label for="filter-cat" id="filter-label" class="red-label">Filter by:</label>
+            <select name="filter-cat" id="filter-cat">
+                <option value="none">-------</option>
+                <option value="username">Username</option>
+                <option value="first-name">First name</option>
+                <option value="last-name">Last name</option>
+                <option value="email">Email</option>
+                <option value="account-type">Account Type</option>
+                <option value="student-id">Student ID</option>
+                <option value="course">Course</option>
+            </select>
+            <input id="filter-criteria" type="text" name="filter-critera">
+            <button onclick="filter()" class="style-button" style="display:inline-block">Filter</button>
+            <div id="filter-labels"></div>
+
+            <br><br>
+            <div id="accounts-table"></div>
+        </main>
+
+    </body>   
+</html>
+
+

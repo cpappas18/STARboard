@@ -3,7 +3,9 @@
 <html lang="en">
     <head>
         <title>STARboard login</title>
+        <meta name="description" content="McGill School of Computer Science TA Management Board">
         <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="keywords" content="STARboard, STARboard McGill, STARBOARD, starboard, TA management, McGill University, McGill SOCS, School of Computer Science">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Manrope&family=Montserrat+Subrayada:wght@700&family=Playfair+Display:ital,wght@1,600&family=Raleway&display=swap" rel="stylesheet">
@@ -12,6 +14,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Manrope&family=Montserrat+Subrayada:wght@700&family=Open+Sans&family=Playfair+Display:ital,wght@1,600&family=Raleway:wght@400;600&display=swap" rel="stylesheet">
         <link href="login.css" rel="stylesheet">
         <link rel="icon" type="image/x-icon" href="../media/logo_navy.png">
+<<<<<<< HEAD
 
         <script>
             function toggleStudentInfo() {
@@ -103,6 +106,11 @@
                 }
             }
         </script>
+=======
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        
+>>>>>>> 24005a6a8c83fe1c7816c37caf026e69b199da5f
     </head>
 
     <body>
@@ -113,7 +121,7 @@
                  class="logoImg">
             <span style="color: #8d99ae">STAR</span><span style="font-weight: 100">board</span>
             <div class = "backgroundImageHeader">
-                McGill's SOCS TA Record Board
+                McGill SOCS TA Record Board
             </div>
         </div>
     </div>
@@ -127,9 +135,10 @@
 
             <form>
                 Username: <input id="username-login" type="text" name="username"><br>
-                Password: <input id="password-login" type="password" name="password"><br>
+                Password:  <input id="password-login" type="password" name="password"><br>
                 
-                <button class = "style_button" type="button" onclick="sendLoginRequest()">Login</button>
+                <button class = "button" type="button" onclick="sendLoginRequest()">
+                <i class="fa fa-sign-in" aria-hidden="true"></i> Login</button>
             </form>
 
             <!---Register button: -->
@@ -137,7 +146,7 @@
                 Don't have an account yet?
             </div>
 
-            <button class = "style_button" onclick="toggleLogin()">Get on Board</button>
+            <button class = "button" onclick="toggleLogin()"><i class="fa fa-user-plus" aria-hidden="true"></i>Get on Board</button>
         </div>
 
         <div id="reg-form" style="display:none;">
@@ -178,53 +187,147 @@
                 </div>
     
                 <br>
-                <button type="button" onclick="toggleLogin()" style="margin-top:10px;">Back to Login</button> 
-                <button type="button" onclick="sendAccountCreationRequest()" style="margin-top:10px;">Register</button>
+                <button type="button" class = "button" onclick="toggleLogin()" style="margin-top:10px;">Back to Login</button> 
+                <button type="button" class = "button" onclick="sendAccountCreationRequest()" style="margin-top:10px;">Register</button>
             </form>
+        </div>
+
+        
+
+        <!--- STARboard for TAs: -->
+        <div class = "forTAs">
+            <div class = "headerFontBlue">
+                <h2>STARboard for TAs</h2>
+            </div>
+            <ul>
+                <li><i class="fa fa-book" aria-hidden="true"style="color: white"></i>View office hours teaching responsibilities</li>
+                <li><i class="fa fa-tasks" aria-hidden="true"style="color: white"></i>Check TA responsibilities</li>
+                <li><i class="fa fa-comments" aria-hidden="true"style="color: white"></i>Chat with professors and other TAs</li>
+            </ul>
+
         </div>
 
         <!--- STARboard for students: -->
         <div class = "forStudents">
-            <div class = "headerFontBlue">
-                <h2>STARBoard for Students</h2>
-            </div>
-            <ul>
-                <li>Create an account</li>
-                <li>Rate teaching assistants by course</li>
-                <li>Provide anonymous, constructive feedback to TA's</li>
-            </ul>
-        </div>
-
-        <!--- STARboard for TAs: -->
-        <div class = "forTAs">
             <div class = "headerFontRed">
-                <h2>STARBoard for TAs</h2>
+                <h2>STARboard for Students</h2>
             </div>
             <ul>
-                <li>View office hours and teaching responsibilities</li>
-                <li>Access course notes, reminders, links, announcement, and more</li>
-                <li>Chat with professors and other TAs</li>
+                <li><i class="fa fa-user-plus" aria-hidden="true" ></i> Create an account</li>
+                <li><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>Rate teaching assistants by course</li>
             </ul>
-
         </div>
-
 
         <!--- STARboard for profs: -->
         <div class = "forProfs">
             <div class = "headerFontBlue">
-                <h2>STARBoard for Professors</h2>
+                <h2>STARboard for Professors</h2>
             </div>
             <ul>
-                <li>View TA performance logs </li>
-                <li>Create a TA wishlist for your courses</li>
-                <li>Access complete TA reports</li>
-                <li>Post TA responsibilities</li>
+                <li><i class="fa fa-list" aria-hidden="true"style="color: white"></i>View TA performance logs </li>
+                <li><i class="fa fa-heart" aria-hidden="true"style="color: white"></i>Create a TA wishlist for your courses</li>
+                <li><i class="fa fa-table" aria-hidden="true"style="color: white"></i>Access complete TA reports</li>
+                <li><i class="fa fa-thumb-tack" aria-hidden="true"style="color: white"></i>Post TA responsibilities</li>
             </ul>
 
-            <!---TODO: Create simple footer -->
+
 
         </div>
+        
     </div>
+   
+    <script>
+        function toggleStudentInfo() {
+            let student_info = document.getElementById('student-info');
 
+            if (student_info.style.display === "none") {
+                student_info.style.display = "block";
+            } else {
+                student_info.style.display = "none";
+            }
+        }
+
+        function toggleLogin() {
+            let login = document.getElementById("login-form");
+            let reg = document.getElementById("reg-form");
+
+            if (login.style.display === "none") {
+                login.style.display = "block";
+                reg.style.display = "none";
+            } else {
+                login.style.display = "none";
+                reg.style.display = "block";
+            }
+        }
+
+        function sendAccountCreationRequest() {
+            let username = document.getElementById("username-reg").value;
+            let password = document.getElementById("password-reg").value;
+            let first_name = document.getElementById("first-name").value;
+            let last_name = document.getElementById("last-name").value;
+            let email = document.getElementById("email").value;
+            let student_id = document.getElementById("student-id").value;
+
+            // get account types from form input
+            let checked = document.querySelectorAll('input[name=acct-type]:checked');
+            let account_types = [];
+            checked.forEach(type => account_types.push(type.id));
+
+            // get registered courses from form input
+            let courses = document.getElementById("courses");
+            let reg_courses = [];
+            let course;
+            for (let c=0; c<courses.children.length; c++) {
+                course = courses.children[c].children[0]; // access nested input element
+                if (course.value.length > 0) {
+                    reg_courses.push(course.value);
+                }
+            }
+        
+            try {
+                const syncRequest = new XMLHttpRequest();
+                syncRequest.open("POST", "register.php", false);
+                syncRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                syncRequest.send(`username=${username}&password=${password}&firstname=${first_name}
+                &lastname=${last_name}&email=${email}&accounttypes=${JSON.stringify(account_types)}
+                &studentid=${student_id}&courses=${JSON.stringify(reg_courses)}`);
+
+                if (syncRequest.status === 200) {
+                    document.getElementById("reg-form").innerHTML = syncRequest.responseText;
+                }
+            } catch (exception) {
+                alert("Request failed. Please try again.");
+            }
+        }
+
+        function sendLoginRequest() {
+            let username = document.getElementById("username-login").value;
+            let password = document.getElementById("password-login").value;
+
+            try {
+                const syncRequest = new XMLHttpRequest();
+                syncRequest.open("POST", "login.php", false);
+                syncRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                syncRequest.send(`username=${username}&password=${password}`);
+
+                if (syncRequest.status === 200) {
+                    document.body.innerHTML = syncRequest.responseText;
+                    let scripts = document.body.getElementsByTagName("script");
+
+                    if (scripts.length > 0) {
+                        eval(scripts[0].text); // execute the declaration code for our returned functions so that the browser knows they exist
+                        save_ticket_in_cookie(); // create a cookie on the user's browser with their ticket number
+                        redirect(); // redirect to the user's dashboard
+                    }
+                }
+            }
+            catch (exception) {
+                alert("Request failed. Please try again.");
+            }
+        }
+
+        
+
+    </script>
     </body>
 </html>

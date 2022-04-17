@@ -67,6 +67,17 @@ echo '
 
 
 /**
+ * VISIBLE TO ADMIN AND SYSOP
+ */
+if (in_array("admin", $permissions) || in_array("sys-operator", $permissions)) {
+    echo '
+    <!--- ADMIN BUTTON--- (FOR ADMIN AND SYSOP ONLY)-->
+    <div class="topNavOption" onclick="menuItemSelected(\'admin\')" id="admin">
+        <i class="fa fa-sliders" aria-hidden="true"></i><a class = "buttonLabel" id="adminButton" href="../ta_admin/admin.html"> ADMIN</a>
+    </div>';
+}
+
+/**
  * TA MANAGEMENT: VISIBLE TO ALL EXCEPT STUDENTS
  */
 if (in_array("professor", $permissions) || in_array("sys-operator", $permissions) 
@@ -121,6 +132,9 @@ if (in_array("sys-operator", $permissions)) {
                 <a href="#"> <i class="fa fa-users" aria-hidden="true"></i> Manage users</a>
                 <a href="../sysop_tasks/importProf.html"><i class="fa fa-user-plus" aria-hidden="true"></i> Import profs/courses</a>
                
+                <a href="../sysop_tasks/manage_users.html"><i class="fa fa-users" aria-hidden="true"></i> Manage users</a>
+                <a href="#"><i class="fa fa-user-plus" aria-hidden="true"></i> Import professor</a>
+                <a href="#"><i class="fa fa-upload" aria-hidden="true"></i> Import course</a>
             </div>
         </div>
     </div>';
