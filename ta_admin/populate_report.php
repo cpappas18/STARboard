@@ -1,6 +1,6 @@
 
 <?php
-
+//large php that will call from all the other phps into large report
 $db_pop = new SQLite3("../STARboard.db", SQLITE3_OPEN_READWRITE);
 $stmt = $db_pop->prepare("SELECT * FROM TACohort WHERE term_month_year = '".$TA_term."' AND student_id= ".$TA_id."");
 $res = $stmt->execute();

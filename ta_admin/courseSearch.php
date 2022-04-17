@@ -4,7 +4,7 @@
 ?></style>
 <?php
 $db = new SQLite3("../STARboard.db", SQLITE3_OPEN_READWRITE);
-
+//from user input field search for all tas currently assigned to this course
 $query = $_POST['query'];
 $category = $_POST['category'];
 $term = $_POST['term'];

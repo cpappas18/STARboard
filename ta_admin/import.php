@@ -3,7 +3,7 @@
     if(!$db){
         echo $db->lastErrorMsg();
     }
-
+//import all data from the csvs
 //import cohort info from file
 $cohort = fopen("./import_csv/TACohort.csv", "r");
 //remove headerline

@@ -1,6 +1,6 @@
 <?php
 $db_performance = new SQLite3("../STARboard.db", SQLITE3_OPEN_READWRITE);
-
+//find all prof comments about this ta
 $stmt_performance = $db_performance->prepare("SELECT * FROM TAPerformance WHERE student_ID= ".$TA_id."");
 $logs = $stmt_performance->execute();
 

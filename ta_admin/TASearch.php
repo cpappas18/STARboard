@@ -3,6 +3,7 @@
 ?></style>
 
 <?php
+//search through tas with given category and query from user search form
 $db = new SQLite3("../STARboard.db", SQLITE3_OPEN_READWRITE);
 
 $query = $_POST['query'];
