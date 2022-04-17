@@ -1,12 +1,12 @@
 *{
     box-sizing: border-box;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Open sans', sans-serif;
 }
+
 
 body, html {
     height: 100%;
 }
-
 /* The main background image */
 .backgroundImage {
     background-image: linear-gradient(to right, rgba(43, 46, 66, 0.8), rgba(0, 0, 0, 0.6)),
@@ -20,6 +20,7 @@ body, html {
 }
 
 .backgroundImageText {
+    font-family: 'Raleway', sans-serif;
     font-weight: 900;
     font-size: 60px;
     text-align: center;
@@ -31,7 +32,7 @@ body, html {
 }
 
 /* The FOR STUDENTS image */
-.forStudents {
+.forTAs {
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(110, 0, 19, 0.6)),
     url("https://reporter.mcgill.ca/wp-content/uploads/2018/06/IMG_1878.jpg");
     position: relative;
@@ -44,7 +45,7 @@ body, html {
     padding: 40px 15% 40px 15%;
 }
 
-.forTAs{
+.forStudents{
     background-color: #edf2f4;
     font-family: 'Open Sans', sans-serif;
     color: #2b2d42;
@@ -55,7 +56,7 @@ body, html {
 /* The FOR STUDENTS image */
 .forProfs {
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(110, 0, 19, 0.5)),
-    url("https://www.mcgill.ca/tls/files/tls/macdonald_engineering_50_after.jpg");
+    url("https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Macdonald_Engineering_Building_-_McGill_University_-_Montreal%2C_Canada_-_DSC07715.jpg/1280px-Macdonald_Engineering_Building_-_McGill_University_-_Montreal%2C_Canada_-_DSC07715.jpg");
     /* Set a specific height */
     position: relative;
     /* Position and center the image to scale nicely on all screens */
@@ -65,10 +66,14 @@ body, html {
     background-attachment: fixed;
     color: white;
     font-family: 'Open Sans', sans-serif;
-    padding: 40px 15% 40px 15%;
+    padding: 40px 15% 70px 15%;
+
 }
 
+
+
 .backgroundImageHeader {
+    font-family: 'Raleway', sans-serif;
     font-weight: 300;
     font-size: 25px;
     position: center;
@@ -77,6 +82,7 @@ body, html {
     text-align: center;
     padding: 40px;
 }
+
 
 hr {
     border:none;
@@ -88,13 +94,15 @@ hr {
 }
 
 .headerFontBlue{
+    font-family: 'Raleway', sans-serif;
     color: #8d99ae;
     padding-top: 10px;
     padding-bottom: 10px;
     font-weight: bolder;
 }
 .headerFontRed{
-    color: #d90429;
+    font-family: 'Raleway', sans-serif;
+    color: #A72530;
     padding-top: 10px;
     padding-bottom: 10px;
     font-weight: bolder;
@@ -103,7 +111,7 @@ hr {
     background-color: #edf2f4;
 }
 
-#login-form, #reg-form, #reg-success-msg-cont {
+#login-form, #reg-form {
     width: auto;
     margin-left: 15%;
     margin-right: 15%;
@@ -117,25 +125,59 @@ hr {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.style-button {
+.button {
     font-size: 16px !important; 
+    border-radius: 10px;
+    background-color: #b4c0d3;
     border: none;
-    border-radius: 15px;
-    background-color: #c8d7f0;
+    color:rgba(43, 46, 66);
     padding: 10px;
 }
 
-.style-button:hover{
-    background-color: #8d99ae;
+i{
+    color:rgba(43, 46, 66);
+    padding-left: 10px;
+    padding-right: 10px;
+}
+ul {
+    list-style-type: none;
+}
+button:hover{ 
+    background-color: #8d99ae; 
+    transition: 0.7s;
 }
 
 input {
-    font-size: 16px !important;
-    border: 1px solid gray;
+    font-size: 16px !important; 
+    padding: 5px;
     border-radius: 15px;
-    padding: 10px;
+    margin: 10px;
+    border: none;
 }
 
-#error-msg-cont {
-    color: red;
+.logoAndTitle{
+    font-family: 'Raleway', sans-serif;
+    font-weight: 900;
+    font-size: 60px;
+    text-align: center;
+    padding-top: 70px;
+    color: white;
+    
+}
+
+.logoImg{
+    margin-top: 30px;
+    height: 90px;
+    width: 80px;
+    vertical-align: text-bottom;
+    /* Ensures the logo isn't too blurry or too pixelated */
+    image-rendering: auto;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+    image-rendering: -webkit-optimize-contrast;
+}
+li{
+    padding: 10px;
+    font-size: 20px;
+
 }
