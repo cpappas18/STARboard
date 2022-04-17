@@ -35,7 +35,7 @@ function getHeader() {
                 handleStateChange(this);
             }
         }
-        request.open("POST", "../dashboard/header.php", true);
+        request.open("POST", "../dashboard/header.php", false);
         request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         request.send(`ticket=${ticket}`);
     } catch (exception) {

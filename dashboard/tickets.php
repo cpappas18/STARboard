@@ -12,6 +12,8 @@ function generate_new_ticket() {
 
     } while ($count > 0); // continue generating until we find an unused ticket number
 
+    $db->close();
+
     return $ticket_num;
 }
 
