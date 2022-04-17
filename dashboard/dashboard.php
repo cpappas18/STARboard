@@ -100,7 +100,7 @@ if (in_array("sys-operator", $permissions)) {
         </li>
     </ul>
     
-    <a class="option" onclick="menuItemSelected(\'system\')">
+    <a class="option" onclick="menuItemSelected(\'system\')" href="../sysop_tasks/manage_users.html">
         Manage users
     </a>
     <a class="option" onclick="menuItemSelected(\'system\')" href="../sysop_tasks/importProf.html">
