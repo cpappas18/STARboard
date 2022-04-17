@@ -111,7 +111,7 @@ hr {
     background-color: #edf2f4;
 }
 
-#login-form, #reg-form {
+#login-form, #reg-form, #reg-success-msg-cont {
     width: auto;
     margin-left: 15%;
     margin-right: 15%;
@@ -149,10 +149,9 @@ button:hover{
 
 input {
     font-size: 16px !important; 
+    border: 1px solid gray;
     padding: 5px;
     border-radius: 15px;
-    margin: 10px;
-    border: none;
 }
 
 .logoAndTitle{
@@ -176,7 +175,7 @@ input {
     image-rendering: pixelated;
     image-rendering: -webkit-optimize-contrast;
 }
-li{
+ul li{
     padding: 10px;
     font-size: 20px;
 
@@ -204,3 +203,6 @@ li{
     image-rendering: -webkit-optimize-contrast;
 }
 
+#error-msg-cont {
+    color: red;
+}

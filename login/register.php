@@ -40,8 +40,6 @@ if (strlen($student_id) > 0) {
     }
 }
 
-<<<<<<< HEAD
-=======
 // if the user is registering as a TA, their information must be in the TACohorts table already and the name must match
 if (in_array("TA", $account_types)) {
     $db2 = new SQLite3("../STARboard_apr14.db", SQLITE3_OPEN_READWRITE);
@@ -102,7 +100,6 @@ if (in_array("professor", $account_types)) {
     }
 }
 
->>>>>>> 24005a6a8c83fe1c7816c37caf026e69b199da5f
 require_once("../dashboard/tickets.php");
 $ticket = generate_new_ticket();
 
@@ -153,21 +150,13 @@ foreach ($account_types as &$type) {
 
 $db->close();
 
-<<<<<<< HEAD
-echo "
-<p>Account created successfully. Please login to continue.</p>
-<button type=\"button\" onclick=\"toggleLogin()\">Back to Login</button> 
-";
-?>
-=======
 if (strcmp($_POST['sender'], "user")==0) {
     echo "
     <p>Account created successfully. Please login to continue.</p>
-    <button type=\"button\" onclick=\"toggleLogin()\" class=\"style-button\">Back to Login</button>";
+    <button type=\"button\" onclick=\"toggleLogin()\" class=\"button\">Back to Login <i class='bi bi-arrow-return-left'></i></button>";
 } else if (strcmp($_POST['sender'], "sysop")==0) {
     echo "
     <p>Account created successfully.</p>
     <button type=\"button\" onclick=\"window.location.replace('./manage_users.html');\" class=\"style-button\">Back to Accounts <i class='bi bi-arrow-return-left'></i></button>";
 }
 ?>
->>>>>>> 24005a6a8c83fe1c7816c37caf026e69b199da5f
