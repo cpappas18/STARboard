@@ -1,13 +1,6 @@
-<style>
-    a:link { text-decoration: none; }
-    a:visited { text-decoration: none; }
-    a:hover { text-decoration: none; }
-    a:active { text-decoration: none; }
-</style>
-
 <?php
 
-require_once("tickets.php");
+require_once("../dashboard/tickets.php");
 
 $ticket = $_POST['ticket'];
 $verified = verify_ticket($ticket);
@@ -27,7 +20,6 @@ if (!$verified) { // ticket does not exist in database or it is expired
 
 // display headers based on permissions
 $permissions = get_ticket_permissions($ticket);
-
 
 /**
  * THE FOLLOWING SECTIONS ARE VISIBLE TO EVERYONE 

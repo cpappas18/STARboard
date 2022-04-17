@@ -1,33 +1,4 @@
-<style>
- 
-    .report{
-        overflow-x: auto;
-    }
 
-    #allTAReportTable td, #allTAReportTable th {
-        padding: 8px;
-        text-align: center;
-        color: #2b2d42;
-        
-    }
-    #allTAReportTable tr:nth-child(even){background-color: #f2f2f2;}
-
-    #allTAReportTable tr:hover {background-color: #ddd;}
-
-    #allTAReportTable th {
-        padding-top: 12px;
-        padding-bottom: 12px;
-        text-align: left;
-        background-color: #8d99ae;
-        color: white;
-        text-align: center;
-        font-weight: 400;
-    }
-   
-
-    
-
-</style> 
 
 <?php 
     /**
