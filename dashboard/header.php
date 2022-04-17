@@ -119,7 +119,7 @@ if (in_array("sys-operator", $permissions)) {
             </a>
             <!--- DROP-DOWN--->
             <div class="dropDown_contents" style="display: none;"  id="system_dropdown">
-                <a href="../sysop_tasks/add_edit_user.html"> <i class="fa fa-users" aria-hidden="true"></i> Manage users</a>
+                <a href="../sysop_tasks/manage_users.html"> <i class="fa fa-users" aria-hidden="true"></i> Manage users</a>
                 <a href="../sysop_tasks/importProf.html"><i class="fa fa-user-plus" aria-hidden="true"></i> Import profs/courses</a>
             </div>
         </div>
