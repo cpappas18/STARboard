@@ -132,3 +132,26 @@ button {
 input {
     font-size: 16px !important; 
 }
+
+.logoAndTitle{
+    font-family: 'Raleway', sans-serif;
+    font-weight: 900;
+    font-size: 60px;
+    text-align: center;
+    padding-top: 70px;
+    color: white;
+    
+}
+
+.logoImg{
+    margin-top: 30px;
+    height: 90px;
+    width: 80px;
+    vertical-align: text-bottom;
+    /* Ensures the logo isn't too blurry or too pixelated */
+    image-rendering: auto;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+    image-rendering: -webkit-optimize-contrast;
+}
+

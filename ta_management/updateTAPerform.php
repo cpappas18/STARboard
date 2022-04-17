@@ -9,8 +9,9 @@
     $course_num = $_POST['course_num'];
     $prof_name = $_POST['prof_name'];
     $term_month_year = $_POST['term_month_year'];
-    $comment = $_POST['comment'];
-
+    //Sanitize user inputer for security
+    $comment = filter_var($_POST['comment'], FILTER_SANITIZE_SPECIAL_CHARS);
+   
     // store message in 'messages' table
     $statement = 'INSERT INTO "TAPerformance" ("term_month_year", "course_num", "TA_name", "comment", "prof_name")
     VALUES (:term_month_year, :course_num, :TA_name, :comment, :prof_name)';
@@ -25,7 +26,4 @@
 
     $query->execute();
     $db->close();
-
-           
-        
 ?>

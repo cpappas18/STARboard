@@ -1,0 +1,42 @@
+*{
+    font-family: 'Open Sans', sans-serif;
+    box-sizing: border-box;
+    color: black;
+}
+
+.contentSection{
+    color: #8d99ae;
+    padding: 35px;
+    
+}
+
+.title{
+    font-family: 'Raleway', sans-serif;
+    font-size: 27px;
+    color: rgb(167, 37, 48);
+    padding: 10px;
+    font-weight: 600;
+}
+
+
+
+main {
+    margin: 0px 10%;
+    padding: 80px 50px 50px;
+    
+    background-color: white;
+    box-shadow: 0 9px 0px 0px white,
+                0 -9px 0px 0px white,
+                12px 0 15px -4px rgba(0, 0, 0, 0.2),
+                -12px 0 15px -4px rgba(0, 0, 0, 0.2);
+
+}
+
+table, th, tr, td {
+    
+    border: 1px solid black;
+    padding: 5px;
+}
+table{
+    width: 100%;
+}

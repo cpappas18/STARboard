@@ -1,17 +1,40 @@
-* {
-    box-sizing: border-box;
-    color: black;
-  }
+
 .contentSection{
-    color: #8d99ae;
-    padding: 120px 10% 10%;
+   color: #111 !important;
+  padding: 120px 10% 40px 10%;
     
+}
+.body{
+  color: #111 !important;
+}
+
+.body i{
+  color: #111;
+}
+
+* i
+{
+  color: #111;
 }
 
 
+.dropDown_contents a {
+  color: black;
+  text-decoration: none;
+  display: block;
+  text-align: center;
+  padding: 10px 10px;
+  border-bottom: solid 1px #afbbd2;
+
+}
+
+.dropDown_contents a:hover {
+  background-color: #8d99ae;
+  text-decoration: none;
+}
+
 .courseInfo{
     float: left;
-    display: block;
     width: 100%;
     padding: 20px;
     margin: 10px;
@@ -77,8 +100,15 @@
   right: 25px;
   font-size: 36px;
   margin-left: 50px;
-  color: rgba(43, 46, 66, 0.6);
+  color: rgba(43, 46, 66, 0.4);
   padding: 10px;
+  display: none;
+}
+.closebtn {
+  display: none;
+}
+.closebtn:hover{
+  color: #111;
 }
 
 
@@ -119,9 +149,9 @@
 
 .courseTitle{
   font-family: 'Raleway', sans-serif;
-  font-size: 25;
+  font-size: 30;
   color: #8d99ae;
-  padding: 10px;
+  padding: 15px;
   width: 100%;
 }
 
@@ -140,6 +170,12 @@
   height: 35px;
   padding: 5px;
   margin-left: 5px;
+  border-radius: 20px;
+  border: none;
+  color: #8d99ae;
+}
+.sendButton:hover{
+  color: #444;
 }
 
 .inputAndButton{

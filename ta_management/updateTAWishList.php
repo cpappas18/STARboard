@@ -5,7 +5,7 @@
     $db = new SQLite3("../STARboard.db", SQLITE3_OPEN_READWRITE);
     
     //Define feilds from post
-    $TA_name = $_POST['TA_name'];
+    $TA_name = filter_var($_POST['TA_name'], FILTER_SANITIZE_SPECIAL_CHARS);
     $course_num = $_POST['course_num'];
     $prof_name = $_POST['prof_name'];
     $term_month_year = $_POST['term_month_year'];
@@ -23,8 +23,6 @@
     $query->bindValue(':prof_name', $prof_name);
 
     $query->execute();
-    $db->close();
-
-           
+    $db->close();      
         
 ?>

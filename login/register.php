@@ -13,6 +13,32 @@ $last_name = $_POST['lastname'];
 $account_types = $_POST['accounttypes'];
 $reg_courses = $_POST['courses'];
 
+// check if the username already exists
+$statement = 'SELECT * FROM "accounts" WHERE "username" = :username';
+$query = $db->prepare($statement);
+$query->bindValue(':username', $username);
+$result = $query->execute();
+$user_exists = $result->fetchArray(SQLITE3_ASSOC);
+
+if ($user_exists) {
+    echo "<div class='error'>The username already exists.</div>";
+    die();
+}
+
+// check if the student ID already exists
+if (strlen($student_id) > 0) {
+    $statement = 'SELECT * FROM "accounts" WHERE "student_ID" = :student_id';
+    $query = $db->prepare($statement);
+    $query->bindValue(':student_id', $student_id);
+    $result = $query->execute();
+    $user_exists = $result->fetchArray(SQLITE3_ASSOC);
+
+    if ($user_exists) {
+        echo "<div class='error'>This student ID belongs to another user.</div>";
+        die();
+    }
+}
+
 require_once("../dashboard/tickets.php");
 $ticket = generate_new_ticket();
 

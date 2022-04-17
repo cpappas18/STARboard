@@ -1,12 +1,23 @@
-*{
+.topNav{
     font-family: 'Open Sans', sans-serif;
     box-sizing: border-box;
     color: white;
 }
+*{
+    font-family: 'Open Sans', sans-serif;
+    box-sizing: border-box;
+    color: black;
+}
 
 body{
     background-color: #edf2f4;
+    color: black !important;
 }
+
+a:link { text-decoration: none; }
+a:visited { text-decoration: none; }
+a:hover { text-decoration: none; }
+a:active { text-decoration: none; }
 
 /* Top Nav has the logo, title, and navigation buttons */
 .topNav {
@@ -30,17 +41,23 @@ body{
     padding: 10px 20px;
     font-size: 15px;
     position: relative;
-    float: right;/* TODO: why isn't this working?*/
+    float: right;
+    font-family: 'Raleway', sans-serif;
 }
 
 .topNavLogo{
     float: left;
     height: 45px;
-    width: 80px;
+    width: 40px;
     display: block;
-    padding-left: 30px;
 }
-
+img {
+    /* Ensures the logo isn't too blurry or too pixelated */
+    image-rendering: auto;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+    image-rendering: -webkit-optimize-contrast;
+}
 .logoText{
     font-size: 27px;
     font-family: 'Raleway', sans-serif;
@@ -49,6 +66,10 @@ body{
     color: #8d99ae;
     padding-left: 10px;
     padding-right: 20px;
+    text-decoration: none;
+}
+.logoText:hover{
+    color: #A72530;
 }
 
 /* Cool underline effect when hovering: */
@@ -97,6 +118,7 @@ body{
     z-index: 1;
     margin-top: 10px;
     transform: translate(-20px, 0px);
+    
 }
 
 .dropDownMenu .dropDownButton {
@@ -124,16 +146,13 @@ body{
 
 .dropDown_contents a:hover {
     background-color: #8d99ae;
+    text-decoration: none;
 }
 
 
 .dropDownMenu {
     float: left;
     overflow: hidden;
-}
-
-a {
-    text-decoration: none;
 }
 
 
