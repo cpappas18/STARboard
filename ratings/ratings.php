@@ -6,9 +6,9 @@ error_reporting(E_ALL);
 
 function getTerms() {
     // get all unique terms (month and year) from the database
-    $db = new SQLite3("../STARboard_G.db", SQLITE3_OPEN_READWRITE);
+    $db = new SQLite3("../STARboard.db", SQLITE3_OPEN_READWRITE);
     $db->exec('BEGIN');
-    $result = $db->query('SELECT DISTINCT "term_month_year" FROM "assign"');
+    $result = $db->query('SELECT DISTINCT "term_month_year" FROM "TAassignment"');
     $db->exec('COMMIT');
 
     $terms = [];
@@ -26,8 +26,8 @@ function getTerms() {
 
 function getCoursesInTerm($term) {
     // get all unique courses from the database
-    $db = new SQLite3("../STARboard_G.db", SQLITE3_OPEN_READWRITE);
-    $query = $db->prepare('SELECT DISTINCT "course_num" FROM "assign" WHERE "term_month_year" = :term');
+    $db = new SQLite3("../STARboard.db", SQLITE3_OPEN_READWRITE);
+    $query = $db->prepare('SELECT DISTINCT "course_num" FROM "TAassignment" WHERE "term_month_year" = :term');
     $query->bindValue(':term', $term);
     $result = $query->execute();
 
@@ -46,8 +46,8 @@ function getCoursesInTerm($term) {
 
 function getTAs($term, $course) {
     // get all unique TAs from the database
-    $db = new SQLite3("../STARboard_G.db", SQLITE3_OPEN_READWRITE);
-    $query = $db->prepare('SELECT DISTINCT "TA_name" FROM "assign" WHERE "term_month_year" = :term and "course_num" = :course');
+    $db = new SQLite3("../STARboard.db", SQLITE3_OPEN_READWRITE);
+    $query = $db->prepare('SELECT DISTINCT "TA_name" FROM "TAassignment" WHERE "term_month_year" = :term and "course_num" = :course');
     $query->bindValue(':term', $term);
     $query->bindValue(':course', $course);
     $result = $query->execute();

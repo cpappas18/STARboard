@@ -8,7 +8,18 @@ function submitFeedback($term, $course, $TA, $rating, $comment) {
     $date = new DateTime(); // date and time of rating
     $date = $date->format('Y-m-d H:i:s'); // convert to SQL date format
 
-    $statement = 'INSERT INTO "ratings" VALUES (:course, :term, :TA_name, :rating, :comment, :date)';
+    // get the TAs student ID
+    $statement = 'SELECT * FROM "TAassignment" WHERE "TA_name" = :TA_name';
+    $query = $db->prepare($statement);
+    $query->bindValue(':TA_name', $TA);
+    $result = $query->execute();
+    $user = $result->fetchArray(SQLITE3_ASSOC); 
+
+    if (!$user) {
+        die ("There is no TA with this name.");
+    }
+
+    $statement = 'INSERT INTO "ratings" VALUES (:course, :term, :TA_name, :rating, :comment, :date, :student_ID)';
     $query = $db->prepare($statement);
     $query->bindValue(':course', $course);
     $query->bindValue(':term', $term);
@@ -16,6 +27,7 @@ function submitFeedback($term, $course, $TA, $rating, $comment) {
     $query->bindValue(':rating', $rating);
     $query->bindValue(':comment', $comment);
     $query->bindValue(':date', $date);
+    $query->bindValue(':student_ID', $user['student_ID']);
 
     $query->execute();
     $db->close();
@@ -41,7 +53,5 @@ if (isset($_POST)) {
 } else {
     die("POST is not set.");
 }
-
-
 
 ?>
