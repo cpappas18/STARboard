@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <title>STARboard TA Administration</title>
+    <!--- Style sheet: ---->
+    <link href="admin.css" rel="stylesheet">
+    <link href="../dashboard/header.css" rel="stylesheet">
+    <link href="../ta_management/coursesPage.css" rel="stylesheet">
+
+    <!-- Icons:-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <!--Fonts:-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope&family=Montserrat+Subrayada:wght@700&family=Playfair+Display:ital,wght@1,600&family=Raleway&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope&family=Montserrat+Subrayada:wght@700&family=Open+Sans&family=Playfair+Display:ital,wght@1,600&family=Raleway:wght@400;600&display=swap" rel="stylesheet">
+    
+    <script src="../dashboard/header.js"></script>
+    
+
+</head>
+    <body>
+        <header>
+            <!--import header-->
+            <div id="topNav" class="topNav">
+            </div>
+        </header>
+
+        <!--content section-->
+<div class = "contentSection">
+    <h1> TA Administration </h1>
+    
+    <!--create a row and populate it with the dashboard buttons-->
+<div class="row">
+    <div class="col-4">
+    <button class="editButton" type="button" id="add"> <i class="fa fa-plus " aria-hidden="true"></i>  Add TA to Course
+    </button> </div>
+    <div class="col-4">
+    <button class="editButton" type="button" id="remove"><i class="fa fa-minus" aria-hidden="true"></i>  Remove TA from Course
+    </button></div>
+    <div class="col-4">
+    <button class="editButton" type="button" id="import" onclick="sendImportRequest()"><i class="fa fa-upload" aria-hidden="true"></i>  Import TA Cohort</button> </div>
+</div>
+<div> <!--search form section-->
+    <h3 class ="red-detail">Search for a TA: </h3>
+
+    
+        <form>
+            <input style='width:20%'id="query" type="text" name="q" placeholder="Search Query">
+            <select id="category" name="column">
+                <!--search using name, course, ta course applied-->
+                <option value="legal_name">TA Name</option>
+                <option value="course_num">Course Number</option>
+                <option value="courses_applied_for">Course Applied For</option>
+            </select>
+            <select id="term_choice" name="column">
+                <option value="Winter 2022">Winter 2022</option>
+                <option value="Fall 2021">Fall 2021</option>
+            </select>
+            <button style='width:30%' class="smallEditButton" type="button" onclick="sendSearchRequest()" >Find 
+            <i class="fa fa-search" aria-hidden="true"></i>
+            </button>
+        </form>
+        </div>
+
+        <div id="addPop" class="bg-modal">
+            <div class="modal-content">
+                <div class="close">+</div>
+                <div id = "add_cont">
+                <p class="add-drop">Add TA to Course</p>
+                <form id="addForm">
+                    <table class="modal-table">
+                        <tr>
+                            <td width="50%">Term:<input type="text" id="term" placeholder="Winter 2022" name="term"></td>
+                            <td>Course Number: <input type="text" id="course_num" placeholder="COMP307" name="course_num"></td>
+                        </tr>
+                        <tr>
+                            <td width="50%">TA Name:<input type="text" id="name" placeholder="Gwynn McKechnie" name="name"></td>
+                            <td>Student ID: <input type="text" id="id" placeholder="260856382" name="ID"></td>
+                        </tr>
+                        <tr><td colspan="2" style="text-align:center">Assigned Hours: <select id="hours" name="hours">
+                            <option value="90">90</option>
+                            <option value="180">180</option>
+                            </select></td></tr>
+                    </table>
+                    
+                    <button class="smallEditButton" type="button" onclick="sendAddRequest()">Add</button>
+    
+                </form>
+            </div>
+            </div>
+        </div>
+
+    
+
+    <div id="removePop" class="bg-modal">
+        <div class="modal-content">
+            <div id="clo" class="clo">+</div>
+            <div id="rem_cont">
+            <p class="add-drop">Remove TA from Course</p>
+            <form id="removeForm">
+                <table class="modal-table">
+                    <tr>
+                        <td width="50%">Term:<input type="text" id="rterm" placeholder="Winter 2022" name="term"></td>
+                        <td>Course Number: <input type="text" id="rcourse_num" placeholder="COMP307" name="course_num"></td>
+                    </tr>
+                    <tr>
+                        <td width="50%">TA Name:<input type="text" id="rname" placeholder="Gwynn McKechnie" name="name"></td>
+                        <td>Student ID: <input type="text" id="rid" placeholder="260856382" name="ID"></td>
+                    </tr>
+                </table>
+                <button class="smallEditButton" type="button" onclick="sendRemoveRequest()">Remove</button>
+
+            </form>
+        </div>
+        </div>
+    </div>
+    
+        <div id="cont"></div>
+        <div id="successMessage">Records updated successfully.</div>
+</div>
+        
+
+        <script>
+        
+            
+        function myFunction(event, divid){
+            var x = document.getElementById(divid);
+            if (x.style.display === "none"){
+                x.style.display = "block";
+
+            }else {
+                x.style.display = "none";
+            }
+            toggleText(event);
+        }
+        function toggleText(event){
+            if (event.innerText == "show more ") {
+                event.innerHTML = "show less <i class='fa fa-chevron-circle-up' aria-hidden='true'></i>";
+            } else if (event.innerText == "show less ") {
+                event.innerHTML = "show more <i class='fa fa-chevron-circle-down' aria-hidden='true'></i>";
+            }
+        }
+        function showSuccessMessage() {
+            // Get the snackbar DIV
+            var x = document.getElementById("successMessage");
+
+            // Add the "show" class to DIV
+            x.className = "show";
+
+            // After 3 seconds, remove the show class from DIV
+            setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+
+        function allRecords(){
+            try{
+                const req = new XMLHttpRequest();
+                req.open("POST", "allrecords.php", false);
+                req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                req.send();
+				if (req.status === 200){
+					document.getElementById("cont").innerHTML = req.responseText;
+				}
+            }
+            catch (exception) {
+                alert("Request failed. Please try again.");
+            }
+        }
+            function sendSearchRequest(){
+                let query = document.getElementById("query").value;
+                let category = document.getElementById("category").value;
+                let term = document.getElementById("term_choice").value;
+                if(category =="legal_name" || category=="courses_applied_for"){
+                    
+                    try{
+                            const req = new XMLHttpRequest();
+                            req.onreadystatechange = function() {
+                        
+                                if (req.status == 200) {
+                                    document.getElementById("cont").innerHTML= req.responseText;
+                                }
+                            }
+                            req.open("POST", "TASearch.php", false);
+                            req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                            req.send(`query=${query}&category=${category}&term=${term}`);
+                            
+                    }
+
+                        catch (exception) {
+                            alert("Request failed. Please try again.");
+                        }
+                    }
+                if(category =="course_num"){
+                    
+                    try{
+                            const req = new XMLHttpRequest();
+                            req.onreadystatechange = function() {
+                        
+                                if (req.status == 200) {
+                                    document.getElementById("cont").innerHTML= req.responseText;
+                                    }
+                            }
+                            req.open("POST", "courseSearch.php", false);
+                            req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                            req.send(`query=${query}&category=${category}&term=${term}`);
+                            
+                        }
+                        catch (exception) {
+                            alert("Request failed. Please try again.");
+                        }
+                    }
+                
+                
+                return false;
+                
+                
+            }
+            
+            function sendAddRequest(){
+                let term = document.getElementById("term").value;
+                let course_num = document.getElementById("course_num").value;
+                let name = document.getElementById("name").value;
+                let id = document.getElementById("id").value;
+                let hours = document.getElementById("hours").value;
+
+                try{
+                    const req = new XMLHttpRequest();
+                    req.onreadystatechange = function() {
+                        
+                        if (req.status == 200) {
+                            document.querySelector('.bg-modal').style.display ="none";
+                            document.getElementById("successMessage").innerHTML=req.responseText;
+                            showSuccessMessage();
+                        }
+                    }
+                    req.open("POST", "assignTA.php", false);
+                    req. setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                    req.send(`term=${term}&course_num=${course_num}&name=${name}&id=${id}&hours=${hours}`);
+                    
+
+                    
+                }
+                catch (exception){
+                    alert("Request failed. Please try again.");
+                }
+            }
+           
+            function sendRemoveRequest(){
+                let term = document.getElementById("rterm").value;
+                let course_num = document.getElementById("rcourse_num").value;
+                let name = document.getElementById("rname").value;
+                let id = document.getElementById("rid").value;
+                try{
+                    const req = new XMLHttpRequest();
+
+                    req.onreadystatechange = function() {
+                        //document.getElementById("rem_cont").innerHTML= "success";
+                        if (req.status == 200) {
+                            document.getElementById('removePop').style.display ="none";
+                            document.getElementById("successMessage").innerHTML=req.responseText;
+                            showSuccessMessage();
+                        }
+                    }
+                    req.open("POST", "removeTA.php", false);
+                    req. setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                    req.send(`term=${term}&course_num=${course_num}&name=${name}&id=${id}`);
+
+                    
+                }
+                catch (exception){
+                    alert("Request failed. Please try again.");
+                }
+            }
+            function sendImportRequest(){
+                try{
+                const req = new XMLHttpRequest();
+                req.open("POST", "import.php", false);
+                req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                req.send();
+                allRecords();
+				
+            }
+            catch (exception) {
+                alert("Request failed. Please try again.");
+            }
+            }
+            
+            allRecords();
+
+            
+
+                
+        
+            //display add pop up
+            document.getElementById("add").addEventListener("click", function() {
+                document.getElementById("addPop").style.display = "flex";
+                document.getElementById("addForm").reset();
+            });
+            //display remove pop up
+            document.getElementById("remove").addEventListener("click", function() {
+                document.getElementById("removePop").style.display = "flex";
+                document.getElementById("removeForm").reset();
+            });
+            //close add popup
+            document.querySelector(".close").addEventListener("click", function(){
+                document.querySelector('.bg-modal').style.display ="none";
+            });
+            //close remove popup
+            document.getElementById("clo").addEventListener("click", function(){
+                document.getElementById('removePop').style.display ="none";
+            });
+            
+            
+            
+            getHeader();
+            
+        </script>
+</body>
+</html>

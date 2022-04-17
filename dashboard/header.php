@@ -65,7 +65,7 @@ if (in_array("admin", $permissions) || in_array("sys-operator", $permissions)) {
     echo '
     <!--- ADMIN BUTTON--- (FOR ADMIN AND SYSOP ONLY)-->
     <div class="topNavOption" onclick="menuItemSelected(\'admin\')" id="admin">
-        <i class="fa fa-sliders" aria-hidden="true"></i><a class = "buttonLabel" id="adminButton"> ADMIN</a>
+        <i class="fa fa-sliders" aria-hidden="true"></i><a class = "buttonLabel" id="adminButton" href="../ta_admin/admin.html"> ADMIN</a>
     </div>';
 }
 

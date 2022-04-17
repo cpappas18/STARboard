@@ -1,0 +1,149 @@
+/*basic container for each record */
+* { color: black; }
+.record {
+    border-radius: 25px;
+    margin-bottom: 20px;
+    border: 2px solid rgba(100, 100, 100, .5);
+    width: 100%;
+    padding: 3% 5%;
+    background-color: white;
+}
+/* to hide the extra information */
+#more {
+    display: none;
+}
+.add-drop{
+    font-family: 'Raleway', sans-serif;
+    color: #8d99ae !important;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-weight: bolder;
+}
+.red-detail{
+    color: rgb(167, 37, 48) !important;
+    size: 5px;
+    margin-bottom: -5px;
+    
+    text-align: left;
+    padding-left: 20px;
+}
+.bg-modal {
+    width:100%;
+    min-height: 100vh;
+    background-color: rgba(0,0,0,0.7);
+    position: fixed;
+    top: 0;
+    left:0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+
+}
+.modal-content {
+    width: 500px;
+    height: auto;
+    background-color: white;
+    border-radius: 4px;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+
+}
+.modal-table{
+    text-align: left;
+}
+.modal_head{
+    size: 5px;
+    margin-bottom: 0;
+}
+input {
+    width: 100%;
+    margin:20px auto;
+    
+    
+}
+.close {
+    position:absolute;
+    top:0;
+    right: 14px;
+    font-size: 45px;
+    color:#8d99ae;
+    transform: rotate(45deg);
+    cursor:pointer;
+
+}
+.clo {
+    position:absolute;
+    top:0;
+    right: 14px;
+    font-size: 45px;
+    color:#8d99ae;
+    transform: rotate(45deg);
+    cursor:pointer;
+
+}
+
+.editBtn {
+    padding: 10px;
+    background-color: #c8d7f0;
+    border: none;
+    float: none;
+    width: 100%;
+    border-radius: 15px;
+    margin: 10px;
+
+}
+hr{
+    display:block;
+    color:rgba(100, 100, 100, .5);
+    width: 100%;
+}
+tr{
+    margin-bottom: -10px !important;
+}
+.field-head{
+    color: rgba(10, 10, 10, 0.5);
+}
+
+.report-section{
+    background-color: rgba(100, 100, 100, .2);
+    padding: 10px 20px;
+    margin: 10px;
+   
+}
+
+.row::after {
+    content: "";
+    clear: both;
+    display: block;
+  }
+  
+  [class*="col-"] {
+    float: left;
+    padding: 15px;
+  }
+
+@media screen and (max-width: 600px) {
+    [class*="col-"] {
+        width: 100%;
+      }
+}
+
+@media only screen and (min-width: 600px){
+        /*for tablet& desktop*/
+        .col-1 {width:8.33%;}
+        .col-2 {width:16.66%;}
+        .col-3 {width:25%;}
+        .col-4 {width:33.33%;}
+        .col-4-2 {width:33.34%;}
+        .col-5 {width:41.66%;}
+        .col-6 {width:50%;}
+        .col-7 {width:58.33%;}
+        .col-8 {width:66.66%;}
+        .col-9 {width:75%;}
+        .col-10 {width:83.33%;}
+        .col-11 {width:91.66%;}
+        .col-12 {width:100%;}
+}
+
