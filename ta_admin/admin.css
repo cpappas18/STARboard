@@ -27,6 +27,11 @@
     text-align: left;
     padding-left: 20px;
 }
+.search-field{
+    padding: 10px;
+    border-radius: 15px;
+    border:none;
+}
 .bg-modal {
     width:100%;
     min-height: 100vh;
@@ -58,8 +63,8 @@
     margin-bottom: 0;
 }
 input {
-    width: 100%;
-    margin:20px auto;
+    width: 90%;
+    margin: auto auto 10px auto;
     
     
 }
