@@ -42,9 +42,8 @@ if (strlen($student_id) > 0) {
 
 // if the user is registering as a TA, their information must be in the TACohorts table already and the name must match
 if (in_array("TA", $account_types)) {
-    $db2 = new SQLite3("../STARboard_apr14.db", SQLITE3_OPEN_READWRITE);
     $statement = 'SELECT * FROM "TACohort" WHERE "student_ID" = :student_id';
-    $query = $db2->prepare($statement);
+    $query = $db->prepare($statement);
     $query->bindValue(':student_id', $student_id);
     $result = $query->execute();
     $user = $result->fetchArray(SQLITE3_ASSOC); 
@@ -71,8 +70,6 @@ if (in_array("TA", $account_types)) {
             die();
         }
     }
-
-    $db2->close();
 }
 
 // if the user is registering as a professor, their information must be in the assignedProfs table already 
