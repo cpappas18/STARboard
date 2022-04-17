@@ -44,9 +44,9 @@ echo '
     <div class="dropDownMenu">
         <!--- SIGN OUT BUTTON--->
         <a class="dropDownButton" onclick="toggleDropDown(\'signout_dropDown\')">
-            <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+            <i class="fa fa-user-circle-o" aria-hidden="true" style="color: white"></i>
             SIGN-OUT
-            <i class="fa fa-angle-down" aria-hidden="true"></i>
+            <i class="fa fa-angle-down" aria-hidden="true" style="color: white"></i>
         </a>
         <!--- DROP-DOWN--->
         <div class="dropDown_contents" style="display: none;"  id="signout_dropDown">
@@ -61,21 +61,12 @@ echo '
 echo '
 <!--- RATINGS BUTTON--->
 <div class="topNavOption" onclick="menuItemSelected(\'ratings\')" id="ratings">
-    <i class="fa fa-thumbs-up" aria-hidden="true"></i><a class="buttonLabel" href="../ratings/ratings.html">RATINGS</a>
+    <i class="fa fa-thumbs-up" aria-hidden="true" style="color: white"></i><a class="buttonLabel" href="../ratings/ratings.html">RATINGS</a>
 </div>';
 
 
 
-/**
- * VISIBLE TO ADMIN AND SYSOP
- */
-if (in_array("admin", $permissions) || in_array("sys-operator", $permissions)) {
-    echo '
-    <!--- ADMIN BUTTON--- (FOR ADMIN AND SYSOP ONLY)-->
-    <div class="topNavOption" onclick="menuItemSelected(\'admin\')" id="admin">
-        <i class="fa fa-sliders" aria-hidden="true"></i><a class = "buttonLabel" id="adminButton" href="../ta_admin/admin.html"> ADMIN</a>
-    </div>';
-}
+
 
 /**
  * TA MANAGEMENT: VISIBLE TO ALL EXCEPT STUDENTS
@@ -89,9 +80,9 @@ if (in_array("professor", $permissions) || in_array("sys-operator", $permissions
 
             <!--- COURSES BUTTON--->
             <a class="dropDownButton buttonLabel" onclick="toggleDropDown(\'courses_dropdown\')">
-                <i class="fa fa-book" aria-hidden="true"></i>
+                <i class="fa fa-book" aria-hidden="true" style="color: white"></i>
                 COURSES
-                <i class="fa fa-angle-down" aria-hidden="true"></i>
+                <i class="fa fa-angle-down" aria-hidden="true" style="color: white"></i>
             </a>
     
             <!--- DROP-DOWN--->
@@ -102,7 +93,6 @@ if (in_array("professor", $permissions) || in_array("sys-operator", $permissions
         </div>
     </div>';
 }
-
 /**
  * VISIBLE TO ADMIN AND SYSOP
  */
@@ -110,7 +100,7 @@ if (in_array("admin", $permissions) || in_array("sys-operator", $permissions)) {
     echo '
     <!--- ADMIN BUTTON--- (FOR ADMIN AND SYSOP ONLY)-->
     <div class="topNavOption" onclick="menuItemSelected(\'admin\')" id="admin">
-        <i class="fa fa-sliders" aria-hidden="true"></i><a class = "buttonLabel" id="adminButton"> ADMIN</a>
+        <i class="fa fa-sliders" aria-hidden="true" style="color: white"></i><a class = "buttonLabel" id="adminButton" href="../ta_admin/admin.html"> ADMIN</a>
     </div>';
 }
 /**
@@ -123,18 +113,14 @@ if (in_array("sys-operator", $permissions)) {
         <div class="dropDownMenu">
             <!--- SYSTEM BUTTON--->
             <a class="dropDownButton buttonLabel" onclick="toggleDropDown(\'system_dropdown\')">
-                <i class="fa fa-cog" aria-hidden="true"></i>
+                <i class="fa fa-cog" aria-hidden="true" style="color: white"></i>
                 SYSTEM
-                <i class="fa fa-angle-down" aria-hidden="true"></i>
+                <i class="fa fa-angle-down" aria-hidden="true" style="color: white"></i>
             </a>
             <!--- DROP-DOWN--->
             <div class="dropDown_contents" style="display: none;"  id="system_dropdown">
-                <a href="#"> <i class="fa fa-users" aria-hidden="true"></i> Manage users</a>
+                <a href="../sysop_tasks/add_edit_user.html"> <i class="fa fa-users" aria-hidden="true"></i> Manage users</a>
                 <a href="../sysop_tasks/importProf.html"><i class="fa fa-user-plus" aria-hidden="true"></i> Import profs/courses</a>
-               
-                <a href="../sysop_tasks/manage_users.html"><i class="fa fa-users" aria-hidden="true"></i> Manage users</a>
-                <a href="#"><i class="fa fa-user-plus" aria-hidden="true"></i> Import professor</a>
-                <a href="#"><i class="fa fa-upload" aria-hidden="true"></i> Import course</a>
             </div>
         </div>
     </div>';
