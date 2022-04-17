@@ -6,13 +6,7 @@ $wished = $stmt_wish->execute();
 
 
 
-// $query_wish = "SELECT * FROM WishList WHERE term_month_year like '%".$TA_term."%' AND student_id= ".$TA_id."";
-// $statement_wish = $db_wishlist->prepare($query_wish);
-// $statement_wish->execute();
-
-
-
-//$wishlists = $statement_wish->fetchAll(PDO::FETCH_ASSOC);
+// find if ta is on any wishlist for this term
 
 
 echo "<h3 class='red-detail'>Wishlist Status</h3>";

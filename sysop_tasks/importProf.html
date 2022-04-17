@@ -18,6 +18,9 @@
 
         <link href="../dashboard/header.css" rel="stylesheet">
         <link href="importProfs.css" rel="stylesheet">
+        <link href="../ta_management/coursesPage.css" rel="stylesheet">
+        <link href="../ta_admin/admin.css" rel="stylesheet">
+
 
 
     </head>
@@ -26,18 +29,146 @@
         <header>
             <div id="topNav" class="topNav"></div>
         </header>
+        <!--modal pop up for adding prof-->
+        <div id="addPop" class="bg-modal">
+            <div class="modal-content">
+                <div class="close">+</div>
+                <div id = "add_cont">
+                <p class="add-drop">Add TA to Course</p>
+                <form id="addForm">
+                    <table class="modal-table" style="border:none">
+                        <tr>
+                            <td width="50%">Term:<input type="text" id="term" placeholder="Winter 2022 January 2022" name="term" required></td>
+                            <td>Course Number: <input type="text" id="course_num" placeholder="COMP307" name="course_num" required></td>
+                        </tr>
+                        <tr>
+                            <td width="50%">Course Title:<input type="text" id="title" placeholder="Web Development" name="title" required></td>
+                            <td>Assigned Professor: <input type="text" id="prof" placeholder="Joseph Vybihal" name="prof_name" required></td>
+                        </tr>
+                    </table>
+                    <button class="smallEditButton" type="button" onclick="sendAddRequest()">Add</button>
+                </form>
+            </div>
+            </div>
+        </div>
         <div class="contentSection">
             <main>
                 <div class="title">Quick-import prof and course</div><br><br>
-    
+                <hr>
+                <button class="editButton" type="button" id="add"> <i class="fa fa-user-plus " aria-hidden="true"></i>  Manually Add Professor
+                </button>
+                <hr>
                 <div id="profsAndCourses_table">
                     the table should go here
                 </div>
+                <div id="successMessage">Records updated successfully.</div>
             </main>
         </div>
+
+        
+<script src="../dashboard/header.js"></script>
+<script>
+    function getProfs() {
+        try {
+            const req = new XMLHttpRequest();
+            
+            req.open("GET", "importProfsAndCourses.php", false);
+            req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            req.send(null);
+        } catch (exception) {
+            alert("Request failed. Please try again.");
+        }
+    }
+
+function toggleTable() {
+    let table = document.getElementById("accounts-table");
+    let act = document.getElementById("edit-account-info");
+
+    if (table.style.display === "none") {
+        table.style.display = "block";
+        act.style.display = "none";
+    } else {
+        table.style.display = "none";
+        act.style.display = "block";
+    }
+}
+
+function populateTable() {
     
-        <script src="../dashboard/header.js"></script>
-        <script src="importProf.js"></script>
+    try{
+        const req = new XMLHttpRequest();
+        req.onreadystatechange = function() {
+                        
+            if (req.status == 200) {
+                let response = req.responseText;
+                document.getElementById("profsAndCourses_table").innerHTML = response;
+                        }
+                    }
+        req.open("POST", "displayCoursesAndProfsTable.php", false);
+        req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        req.send();
+        
+    }catch (exception)
+    {
+        alert("Request failed.");
+    }
+}
+function showSuccessMessage() {
+            // Get the snackbar DIV
+    var x = document.getElementById("successMessage");
+
+            // Add the "show" class to DIV
+    x.className = "show";
+
+            // After 3 seconds, remove the show class from DIV
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+function sendAddRequest(){
+    let term = document.getElementById("term").value;
+    let course_num = document.getElementById("course_num").value;
+    let title = document.getElementById("title").value;
+    let prof = document.getElementById("prof").value;
+
+    try{
+        const req = new XMLHttpRequest();
+        req.onreadystatechange = function() {
+                        
+            if (req.status == 200) {
+                document.querySelector('.bg-modal').style.display ="none";
+                document.getElementById("successMessage").innerHTML=req.responseText;
+                showSuccessMessage();
+                populateTable();
+            }
+        }
+        req.open("POST", "assignProf.php", false);
+        req. setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        req.send(`term=${term}&course_num=${course_num}&title=${title}&prof=${prof}`);
+                    
+
+                    
+        }
+    catch (exception){
+         alert("Request failed. Please try again.");
+         }
+    }
+//display manual add pop up
+document.getElementById("add").addEventListener("click", function() {
+                document.getElementById("addPop").style.display = "flex";
+                document.getElementById("addForm").reset();
+            });
+//close manual add popup
+document.querySelector(".close").addEventListener("click", function(){
+                document.querySelector('.bg-modal').style.display ="none";
+            });
+
+//on load get the profs assigned to courses from the csv:
+
+getProfs();
+populateTable();
+</script>
+
+    
+
     </body>   
 </html>
 

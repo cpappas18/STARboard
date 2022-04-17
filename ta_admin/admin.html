@@ -2,6 +2,7 @@
 <html lang="en">
     <head>
     <title>STARboard TA Administration</title>
+    <link rel="icon" type="image/x-icon" href="../media/logo_navy.png">
     <!--- Style sheet: ---->
     <link rel="icon" type="image/x-icon" href="../media/logo_navy.png">
     <link href="admin.css" rel="stylesheet">
@@ -33,7 +34,7 @@
         <!--content section-->
 <div class = "contentSection">
     <h1> TA Administration </h1>
-    
+    <hr>
     <!--create a row and populate it with the dashboard buttons-->
 <div class="row">
     <div class="col-4">
@@ -45,19 +46,21 @@
     <div class="col-4">
     <button class="editButton" type="button" id="import" onclick="sendImportRequest()"><i class="fa fa-upload" aria-hidden="true"></i>  Import TA Cohort</button> </div>
 </div>
+<hr>
+
 <div> <!--search form section-->
     <h3 class ="red-detail">Search for a TA: </h3>
 
     
-        <form>
-            <input style='width:20%'id="query" type="text" name="q" placeholder="Search Query">
-            <select id="category" name="column">
+        <form style="padding-left:15px">
+            <input class='search-field' style='width:200px'id="query" type="text" name="q" placeholder="Search Query">
+            <select class='search-field' id="category" name="column">
                 <!--search using name, course, ta course applied-->
                 <option value="legal_name">TA Name</option>
                 <option value="course_num">Course Number</option>
                 <option value="courses_applied_for">Course Applied For</option>
             </select>
-            <select id="term_choice" name="column">
+            <select class='search-field' id="term_choice" name="column">
                 <option value="Winter 2022">Winter 2022</option>
                 <option value="Fall 2021">Fall 2021</option>
             </select>
@@ -162,9 +165,9 @@
                 req.open("POST", "allrecords.php", false);
                 req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
                 req.send();
-				if (req.status === 200){
-					document.getElementById("cont").innerHTML = req.responseText;
-				}
+                if (req.status === 200){
+                    document.getElementById("cont").innerHTML = req.responseText;
+                }
             }
             catch (exception) {
                 alert("Request failed. Please try again.");
@@ -258,7 +261,6 @@
                     const req = new XMLHttpRequest();
 
                     req.onreadystatechange = function() {
-                        //document.getElementById("rem_cont").innerHTML= "success";
                         if (req.status == 200) {
                             document.getElementById('removePop').style.display ="none";
                             document.getElementById("successMessage").innerHTML=req.responseText;
@@ -282,7 +284,7 @@
                 req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
                 req.send();
                 allRecords();
-				
+                
             }
             catch (exception) {
                 alert("Request failed. Please try again.");

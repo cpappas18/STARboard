@@ -5,7 +5,7 @@ $stmt_comments = $db_comments->prepare("SELECT * FROM ratings WHERE student_ID= 
 $comments = $stmt_comments->execute();
 
 
-//$comments = $statement_comments->fetchAll(PDO::FETCH_ASSOC);
+//find all student comments
 
 echo "<h3 class='red-detail'>Student Comments</h3></br>";
 

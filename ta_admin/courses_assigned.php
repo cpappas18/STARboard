@@ -1,5 +1,6 @@
 <?php
 $db_assigned = new SQLite3("../STARboard.db", SQLITE3_OPEN_READWRITE);
+//find all the courses the ta has been assigned to for selected semester
 $stmt_assign = $db_assigned->prepare("SELECT course_num FROM TAassignment WHERE term_month_year = '".$TA_term."' AND student_id= ".$TA_id."");
 $assigned = $stmt_assign->execute();
 
