@@ -95,9 +95,5 @@
         return $name;
     }
     
-
-
-
-
-    
+    $db_dropdown->close();
 ?>
