@@ -18,5 +18,5 @@
     }
     fclose($coursesAndProfs);
 
-    $db->close();
+    $db_import->close();
 ?>
