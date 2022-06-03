@@ -1,4 +1,4 @@
-# STARboard - School of Computer Science TA Record Board
+# School of Computer Science TA Record Board (STARboard)
 
 A multi-page website created for the final project of COMP 307 (Principles of Web Development) at McGill University. The purpose of this website is to manage the responsibilities and records of teaching assistants (TAs) that work for the School of Computer Science. As a student, you can use this site to rate the TAs that have taught you in your courses. As a professor, you can use this site to browse the performance logs and ratings of TAs that work for McGill, you can post TA responsibilities and assigned office hourse for your courses, and you can chat with your staff through a message board. As a teaching assistant, you can use this site to view your responsibilities for each assigned course, you can view your ratings, and you can participate in the chat room with your coworkers and professors. The website also provides support for TA administrator accounts, which can assign TAs to courses and modify course history.
   
